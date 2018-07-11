@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting</title>
+</head>
+<body>
+<h1>Greeting!</h1>
+<div th:each="greeting : ${greetings}">
+    <p>
+        <span th:text="${greeting.id}"/> - <span th:text="${greeting.lang}"/> - <span th:text="${greeting.text}"/>
+    </p>
+</div>
+</body>
+</html>
