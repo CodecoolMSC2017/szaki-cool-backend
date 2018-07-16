@@ -29,7 +29,7 @@ public class UserData {
 
     @NotNull
     @NotEmpty
-    @Column(name = "premium_status")
+    @Column(name = "premium_membership")
     private boolean premiumStatus;
 
     // standard getters and setters
