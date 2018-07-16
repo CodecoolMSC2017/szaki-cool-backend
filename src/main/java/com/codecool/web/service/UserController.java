@@ -1,12 +1,13 @@
-package com.codecool.spring.Main.services;
+package com.codecool.web.service;
 
-import com.codecool.spring.Main.dto.UserDto;
-import com.codecool.spring.Main.model.UserData;
-import com.codecool.spring.Main.repositories.UserRepo;
+import com.codecool.web.dto.UserDto;
+import com.codecool.web.model.UserData;
+import com.codecool.web.repository.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;

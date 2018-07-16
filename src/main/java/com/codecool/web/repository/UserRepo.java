@@ -1,6 +1,7 @@
-package com.codecool.spring.Main.repositories;
+package com.codecool.web.repository;
 
-import com.codecool.spring.Main.model.UserData;
+
+import com.codecool.web.model.UserData;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 

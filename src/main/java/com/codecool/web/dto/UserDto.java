@@ -1,4 +1,4 @@
-package com.codecool.spring.Main.dto;
+package com.codecool.web.dto;
 
 public class UserDto {
     private String id;

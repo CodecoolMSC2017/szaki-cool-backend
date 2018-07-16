@@ -1,4 +1,4 @@
-package com.codecool.spring.Main.model;
+package com.codecool.web.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
