@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public final class GreetingService {
 
-    @Autowired
+    //@Autowired
     private GreetingRepository repository;
 
     public Iterable<Greeting> getGreetings() throws SQLException {
