@@ -1,4 +1,4 @@
-package com.codecool.web.service;
+package com.codecool.web.controller;
 
 import com.codecool.web.dto.UserDto;
 import com.codecool.web.model.UserData;
