@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -40,7 +41,12 @@ public class UserService {
             username,
             passwordEncoder.encode(password),
             AuthorityUtils.createAuthorityList("USER_ROLE")));
-        return userRepository.findByUsername(username).orElseThrow();
+            try {
+                return userRepository.findByUsername(username).get();
+            }
+            catch (NoSuchElementException x) {
+                throw new NoSuchElementException("No value present");
+            }
     }
 
     public Optional<User> get(Integer id) {

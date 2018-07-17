@@ -33,6 +33,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        http
+            .authorizeRequests()
+            .antMatchers("/register", "/users/check/*")
+            .permitAll();
+
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
         http.httpBasic();
@@ -40,6 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .anyRequest()
             .authenticated();
+
+
     }
 
     @Bean
