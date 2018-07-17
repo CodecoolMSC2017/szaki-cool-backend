@@ -17,7 +17,7 @@ CREATE TABLE users (
     name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL CHECK (email <> ''),
     password TEXT NOT NULL,
-    role TEXT NOT NULL,
+    role TEXT NOT NULL DEFAULT 'USER',
     premium_membership BOOLEAN DEFAULT false,
     registration_date DATE NOT NULL
 );

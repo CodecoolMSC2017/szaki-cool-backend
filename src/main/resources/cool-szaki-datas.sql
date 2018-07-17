@@ -1,14 +1,27 @@
-INSERT INTO users (name, email, password, role, premium_membership, registration_date) VALUES ('user1', '1@user.com', 'a', 'admin', true, '2018-07-01');
-INSERT INTO users (name, email, password, role, registration_date) VALUES ('user2', '2@user.com', 'a', 'user', '2018-07-01');
-INSERT INTO users (name, email, password, role, premium_membership, registration_date) VALUES ('user3', '3@user.com', 'a', 'user', true, '2018-07-01');
+INSERT INTO users (name, email, password, role, premium_membership, registration_date)
+VALUES ('user1', '1@user.com', 'a', 'ADMIN', true, '2018-07-01');
+INSERT INTO users (name, email, password, role, registration_date)
+VALUES ('user2', '2@user.com', 'a', 'USER', '2018-07-01');
+INSERT INTO users (name, email, password, role, premium_membership, registration_date)
+VALUES ('user3', '3@user.com', 'a', 'USER', true, '2018-03-01');
+INSERT INTO users (name, email, password, registration_date) VALUES ('Golya Sandor', 'trolol@gmail.com', '123456', '2018-03-01');
+INSERT INTO users (name, email, password, registration_date) VALUES ('Szlaszlo75', 'cactus9009@gmail.com', 'asdf', '2010-07-01');
+INSERT INTO users (name, email, password, registration_date) VALUES ('JohnSmith', 'bluepillow11@gmail.com', 'szezamtarulj', '2016-10-03');
+INSERT INTO users (name, email, password, premium_status, registration_date) VALUES ('IHaveALotOfMoney', 'ritchwitch@gmail.com', '$$$$$$', true, '2013-05-11');
+INSERT INTO users (name, email, password, role, registration_date) VALUES ('a', 'admin@coolszaki.hu', 'a', 'ADMIN', '2014-07-28');
+INSERT INTO users (name, email, password, registration_date) VALUES ('b', 'testuser@gmail.com', 'b', '2012-12-01');
+INSERT INTO users (name, email, password, registration_date) VALUES ('Falloutboy', 'mousetrap34@gmail.com', 'banana', '2018-03-15');
 
-INSERT INTO profiles (user_id, first_name, last_name, phone, address, picture, description) VALUES 
+
+
+
+INSERT INTO profiles (user_id, first_name, last_name, phone, address, picture, description) VALUES
     (1, 'John', 'Smith', '12345', 'UK', 'user_pic_1.jpg', 'Hi, Im John'),
     (2, 'Charlie', 'Brown', null, 'USA', 'user_pic_2.jpg', 'I konow you know me'),
     (3, 'Pamela', 'Taylor', '56789', 'USA', null, null)
 ;
 
-INSERT INTO private_messages (time, from_user_id, to_user_id, message) VALUES 
+INSERT INTO private_messages (time, from_user_id, to_user_id, message) VALUES
     ('2018-07-01', 1, 2, 'Hi, Im John'),
     ('2018-07-01', 1, 2, 'How are you today?'),
     ('2018-07-01', 1, 2, 'Hmm?'),
