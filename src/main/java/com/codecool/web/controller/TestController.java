@@ -36,7 +36,8 @@ public class TestController {
         String username = map.get("username");
         String password = map.get("password");
         String confirmationPassword = map.get("confirmationPassword");
-        return userService.add(username, password, confirmationPassword);
+        String email = map.get("email");
+        return userService.add(username, password, confirmationPassword, email);
     }
 
     @PostMapping("/change-password")
