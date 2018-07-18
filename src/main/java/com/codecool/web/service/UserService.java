@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -31,16 +32,27 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public User add(String username, String password, String confirmationPassword) {
+    public User add(String username, String password, String confirmationPassword, String email) {
         if (!password.equals(confirmationPassword)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Password and confirmation password do not match!");
+        }
+        if (email.equals(null)) {
+            throw new IllegalArgumentException("Email cannot be null!");
         }
 
         userDetailsManager.createUser(new org.springframework.security.core.userdetails.User(
             username,
             passwordEncoder.encode(password),
             AuthorityUtils.createAuthorityList("USER_ROLE")));
-        return userRepository.findByUsername(username).orElseThrow();
+            try {
+                User user = userRepository.findByUsername(username).get();
+                user.setEmail(email);
+                user = userRepository.save(user);
+                return user;
+            }
+            catch (NoSuchElementException x) {
+                throw new NoSuchElementException("No value present");
+            }
     }
 
     public Optional<User> get(Integer id) {

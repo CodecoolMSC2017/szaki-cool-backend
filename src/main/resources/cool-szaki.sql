@@ -23,8 +23,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE profiles (
-    id SERIAL PRIMARY KEY, /* user_id should be the PRIMARY KEY */
-    user_id INT UNIQUE NOT NULL,
+    user_id SERIAL PRIMARY KEY, /* user_id should be the PRIMARY KEY */
     first_name TEXT NULL,
     last_name TEXT NULL,
     phone INT NULL,

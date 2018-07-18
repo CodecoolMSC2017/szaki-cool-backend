@@ -1,0 +1,14 @@
+package com.codecool.web.repository;
+
+import com.codecool.web.model.Profile;
+import com.codecool.web.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface ProfialRepository extends JpaRepository<Profile, Integer>{
+
+    Optional<Profile> findByUserId(String userId);
+}
