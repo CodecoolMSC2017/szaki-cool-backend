@@ -6,7 +6,7 @@ create table users (
     username varchar(50) not null unique,
     password varchar(60) not null,
     enabled boolean not null,
-    asd text
+    email text
 );
 
 create table authorities (
