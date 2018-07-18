@@ -16,6 +16,8 @@ public class User implements Serializable {
 
     private Boolean enabled;
 
+    private String email;
+
     @ElementCollection
     @CollectionTable(
         name = "authorities",
@@ -54,5 +56,13 @@ public class User implements Serializable {
 
     public void setAuthorities(List<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

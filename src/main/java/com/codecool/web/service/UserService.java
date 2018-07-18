@@ -32,9 +32,12 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public User add(String username, String password, String confirmationPassword) {
+    public User add(String username, String password, String confirmationPassword, String email) {
         if (!password.equals(confirmationPassword)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Password and confirmation password do not match!");
+        }
+        if (email.equals(null)) {
+            throw new IllegalArgumentException("Email cannot be null!");
         }
 
         userDetailsManager.createUser(new org.springframework.security.core.userdetails.User(
@@ -42,7 +45,10 @@ public class UserService {
             passwordEncoder.encode(password),
             AuthorityUtils.createAuthorityList("USER_ROLE")));
             try {
-                return userRepository.findByUsername(username).get();
+                User user = userRepository.findByUsername(username).get();
+                user.setEmail(email);
+                user = userRepository.save(user);
+                return user;
             }
             catch (NoSuchElementException x) {
                 throw new NoSuchElementException("No value present");
