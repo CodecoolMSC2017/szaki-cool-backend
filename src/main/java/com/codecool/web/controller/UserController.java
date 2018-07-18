@@ -1,11 +1,14 @@
-package com.codecool.web.service;
+package com.codecool.web.controller;
 
 import com.codecool.web.dto.UserDto;
+import com.codecool.web.model.Mail;
 import com.codecool.web.model.UserData;
 import com.codecool.web.repository.UserRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.*;
@@ -29,6 +32,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     //common function
     public List<UserDto> getAllUsers(){
+
         //returns Iterable type with a preimplemented findAll() method from the repository
         Iterable<UserData> iterable = userRepo.findAll();
         //make a list from the Iterable
