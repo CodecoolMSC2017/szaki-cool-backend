@@ -9,10 +9,12 @@ import javax.validation.constraints.NotNull;
 public class UserData {
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
     private long Id;
 
     @NotNull
     @NotEmpty
+    @Column(name = "username")
     private String name;
 
     @NotNull

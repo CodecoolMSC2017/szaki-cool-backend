@@ -8,6 +8,8 @@ create table users (
     username varchar(50) not null unique,
     password varchar(60) not null,
     email text,
+    premium_membership boolean DEFAULT false,
+    role text DEFAULT 'USER',
     enabled boolean not null
 );
 

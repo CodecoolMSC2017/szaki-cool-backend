@@ -26,7 +26,7 @@ public class ProfileData {
 
 
     @Nullable
-    
+
     private String phone;
 
     @Nullable
