@@ -5,15 +5,15 @@ import com.codecool.web.component.EmailComponent;
 import com.codecool.web.model.User;
 import com.codecool.web.repository.UserRepository;
 import com.codecool.web.security.RandomString;
+import com.codecool.web.service.exceptions.FaildToFindAccountByVerificationCodeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -38,9 +38,25 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public void activateUser(String key){
+    private List<User> getAllRegisteredUserList(){
+        Iterable<User> iterable = getAll();
+        List<User> target = new ArrayList<>();
+        iterable.forEach(target::add);
+        return target;
+    }
 
-
+    public String activateUser(String key) throws FaildToFindAccountByVerificationCodeException {
+        List<User> users = getAllRegisteredUserList();
+        for (User usr: users) {
+            if(usr.getActivationCode().equals(key)){
+                usr.setEnabled(true);
+                System.out.println("in for");
+                usr.setActivationCode(null);  //uncommented while testing
+                userRepository.save(usr);
+                return "User account verified";
+            }
+        }
+        throw new FaildToFindAccountByVerificationCodeException();
 
     }
 
