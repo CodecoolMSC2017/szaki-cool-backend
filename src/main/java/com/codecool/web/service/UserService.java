@@ -38,6 +38,12 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    public void activateUser(String key){
+
+
+
+    }
+
     public User add(String username, String password, String confirmationPassword, String email) {
         if (!password.equals(confirmationPassword)) {
             throw new IllegalArgumentException("Password and confirmation password do not match!");
