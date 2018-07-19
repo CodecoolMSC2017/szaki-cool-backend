@@ -19,7 +19,6 @@ public class RegisterController {
 
     @PostMapping("")
     public User register(@RequestBody Map<String, String> map) {
-        int randomKey = generateRandomKey();
 
         String username = map.get("username");
         String password = map.get("password");
@@ -37,6 +36,7 @@ public class RegisterController {
         return value;
     }
 
+    @Deprecated
     public String generateRegistrationEmail(String email, long randomKey){
 
         String registrationMessage = "Hi,\n" +

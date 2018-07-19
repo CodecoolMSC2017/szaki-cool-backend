@@ -59,7 +59,7 @@ public class UserService {
                 user.setActivationCode(activationCode);
                 user = userRepository.save(user);
 
-                manageEmailVerification(user.getEmail());
+                manageEmailVerification(user);
 
                 return user;
             }
@@ -85,8 +85,8 @@ public class UserService {
         userDetailsManager.changePassword(oldPassword, encodedNewPassword);
     }
 
-    private void manageEmailVerification(String email) {
-        emailComponent.sendMail(email, "Registration succesful", "ok");
+    private void manageEmailVerification(User user) {
+        emailComponent.sendMail(user.getEmail(), "Registration succesful", user.getActivationCode());
 
     }
 }

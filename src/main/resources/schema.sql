@@ -1,6 +1,6 @@
 drop table if exists authorities;
 drop table if exists profiles CASCADE;
-DROP TABLE IF EXISTS works;
+DROP TABLE IF EXISTS works CASCADE;
 DROP TABLE IF EXISTS guarantee_length;
 DROP TABLE IF EXISTS currency;
 drop table if exists users CASCADE;
