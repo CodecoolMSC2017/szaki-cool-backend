@@ -50,7 +50,6 @@ public class UserService {
         for (User usr: users) {
             if(usr.getActivationCode().equals(key)){
                 usr.setEnabled(true);
-                System.out.println("in for");
                 usr.setActivationCode(null);  //uncommented while testing
                 userRepository.save(usr);
                 return "User account verified";
