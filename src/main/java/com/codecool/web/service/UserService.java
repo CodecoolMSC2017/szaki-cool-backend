@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 
+import com.codecool.web.component.EmailComponent;
 import com.codecool.web.model.User;
 import com.codecool.web.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EmailComponent emailComponent;
 
     public Iterable<User> getAll() {
         return userRepository.findAll();
@@ -48,6 +52,9 @@ public class UserService {
                 User user = userRepository.findByUsername(username).get();
                 user.setEmail(email);
                 user = userRepository.save(user);
+
+                manageEmailVerification(user.getEmail());
+
                 return user;
             }
             catch (NoSuchElementException x) {
@@ -70,5 +77,10 @@ public class UserService {
 
         String encodedNewPassword = passwordEncoder.encode(newPassword);
         userDetailsManager.changePassword(oldPassword, encodedNewPassword);
+    }
+
+    private void manageEmailVerification(String email) {
+        emailComponent.sendMail(email, "Registration succesful", "ok");
+
     }
 }
