@@ -1,5 +1,7 @@
 package com.codecool.web.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -29,6 +31,19 @@ public class User implements Serializable {
     )
     @Column(name = "authority")
     private List<String> authorities;
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
+
+    @Column(name = "activation_code")
+
+    @JsonIgnore
+    private String activationCode;
 
     public Integer getId() {
         return id;
