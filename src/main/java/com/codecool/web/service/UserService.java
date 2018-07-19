@@ -39,7 +39,9 @@ public class UserService {
     }
 
     public void activateUser(String key){
-
+        User user = userRepository.findByActivationCode(key).get();
+        user.setEnabled(true);
+        userRepository.save(user);
 
 
     }

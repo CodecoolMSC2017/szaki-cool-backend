@@ -19,7 +19,7 @@ public class ActivationVerificationController {
         return "account activated with key= " + key;
     }
 
-    @PostMapping("*")
+    @PostMapping("")
     public String activateAccount(@RequestBody Map<String, String> map) {
         String activationCode = map.get("activationCode");
         userService.activateUser(activationCode);
