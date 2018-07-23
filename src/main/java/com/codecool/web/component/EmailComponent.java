@@ -4,6 +4,7 @@ import com.codecool.web.model.Mail;
 import com.codecool.web.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,17 +14,17 @@ public class EmailComponent {
     private EmailService emailService;
 
 
-    public void sendMail() {
+    public void sendTestMail() {
         Mail mail = new Mail();
         mail.setFrom("coolszaki@gmail.com");
-        mail.setTo("sauriaster@gmail.com");
-        mail.setSubject("Noreply - testing email sending");
+        mail.setTo("coolszaki@gmail.com");
+        mail.setSubject("Noreply - testing email sending service");
         mail.setContent("ok");
 
         emailService.sendSimpleMessage(mail);
     }
 
-
+    @Async
     public void sendMail(String sendTo, String subject, String message){
         Mail mail = new Mail();
         mail.setFrom("coolszaki@gmail.com");

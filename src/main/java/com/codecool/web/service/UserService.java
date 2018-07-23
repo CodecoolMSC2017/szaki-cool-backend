@@ -5,6 +5,7 @@ import com.codecool.web.component.EmailComponent;
 import com.codecool.web.model.User;
 import com.codecool.web.repository.UserRepository;
 import com.codecool.web.security.RandomString;
+import com.codecool.web.service.exceptions.ActivationKeyIsNullException;
 import com.codecool.web.service.exceptions.FaildToFindAccountByVerificationCodeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -45,8 +46,11 @@ public class UserService {
         return target;
     }
 
-    public String activateUser(String key) throws FaildToFindAccountByVerificationCodeException {
+    public String activateUser(String key) throws FaildToFindAccountByVerificationCodeException, ActivationKeyIsNullException {
         List<User> users = getAllRegisteredUserList();
+        if(key == null){
+            throw new ActivationKeyIsNullException();
+        }
         for (User usr: users) {
             if(usr.getActivationCode().equals(key)){
                 usr.setEnabled(true);

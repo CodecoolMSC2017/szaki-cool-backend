@@ -1,6 +1,7 @@
 package com.codecool.web.controller;
 
 import com.codecool.web.service.UserService;
+import com.codecool.web.service.exceptions.ActivationKeyIsNullException;
 import com.codecool.web.service.exceptions.FaildToFindAccountByVerificationCodeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ActivationVerificationController {
     }
 
     @PostMapping("")
-    public String activateAccount(@RequestBody Map<String, String> map) throws FaildToFindAccountByVerificationCodeException {
+    public String activateAccount(@RequestBody Map<String, String> map) throws FaildToFindAccountByVerificationCodeException, ActivationKeyIsNullException {
         String activationCode = map.get("activationCode");
         userService.activateUser(activationCode);
 
