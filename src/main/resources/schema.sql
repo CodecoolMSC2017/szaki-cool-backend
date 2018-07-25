@@ -13,7 +13,7 @@ create table users (
     email text,
     premium_membership boolean DEFAULT false,
     role text DEFAULT 'USER',
-    enabled boolean not null,
+    enabled boolean not null DEFAULT false,
     activation_code text
 );
 

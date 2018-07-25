@@ -1,6 +1,11 @@
-insert into users (username, password, email, enabled, role, activation_code) values ('admin', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','szakicool@gmail.com', true, 'ADMIN', 'DGrHe9znXv');
-insert into users (username, password, email, enabled, role, activation_code) values ('user', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','szakicool@gmail.com', true, 'USER', 'DGrHe9znXb');
-insert into authorities (username, authority) values ('admin', 'ROLE_ADMIN');
+INSERT INTO users (username, password, email, enabled, role) values ('admin', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','szakicool@gmail.com', true, 'ADMIN');
+INSERT INTO users (username, password, email, enabled, role) values ('user', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','szakicool@gmail.com', true, 'USER');
+INSERT INTO authorities (username, authority) values ('admin', 'ROLE_ADMIN');
+INSERT INTO users (username, email, password, enabled) VALUES ('Golya Sandor', 'trolol@gmail.com', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.', true);
+INSERT INTO users (username, email, password, enabled) VALUES ('Szlaszlo75', 'cactus9009@gmail.com', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.', true);
+INSERT INTO users (username, email, password, activation_code) VALUES ('JohnSmith', 'bluepillow11@gmail.com', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.', 'giskg9H3Am');
+INSERT INTO users (username, email, password, premium_membership, enabled) VALUES ('IHaveALotOfMoney', 'ritchwitch@gmail.com', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.', true, true);
+INSERT INTO users (username, email, password, activation_code) VALUES ('Falloutboy', 'mousetrap34@gmail.com', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.', 'dG82KCjYiI');
 
 
 INSERT INTO profiles (user_id, first_name, last_name, phone, address, picture, description) VALUES

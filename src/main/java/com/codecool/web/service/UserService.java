@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Service
@@ -52,9 +53,9 @@ public class UserService {
             throw new ActivationKeyIsNullException();
         }
         for (User usr: users) {
-            if(usr.getActivationCode().equals(key)){
+            if(key.equals(usr.getActivationCode())){
                 usr.setEnabled(true);
-                usr.setActivationCode(null);  //uncommented while testing
+                usr.setActivationCode(null);
                 userRepository.save(usr);
                 return "User account verified";
             }
@@ -63,7 +64,7 @@ public class UserService {
 
     }
 
-    public User add(String username, String password, String confirmationPassword, String email) {
+    public User add(String username, String password, String confirmationPassword, String email, HttpServletRequest req) {
         if (!password.equals(confirmationPassword)) {
             throw new IllegalArgumentException("Password and confirmation password do not match!");
         }
@@ -84,7 +85,7 @@ public class UserService {
                 user.setActivationCode(activationCode);
                 user = userRepository.save(user);
 
-                manageEmailVerification(user);
+                manageEmailVerification(user, req);
 
                 return user;
             }
@@ -110,8 +111,19 @@ public class UserService {
         userDetailsManager.changePassword(oldPassword, encodedNewPassword);
     }
 
-    private void manageEmailVerification(User user) {
-        emailComponent.sendMail(user.getEmail(), "Registration succesful", user.getActivationCode());
+    private void manageEmailVerification(User user, HttpServletRequest req) {
+        String makeVerifyLink = "http://" + req.getRemoteAddr() + ":4200/activate";
+        String verifyEmailText = "Hi,\n" +
+            "\n" +
+            "Thank you for registering to the Szakicool. Please verify you acount by clicking this link " + makeVerifyLink + " ," +
+            " and please enter your verification number: " + user.getActivationCode() + "\n" +
+            "\n" +
+            "If you did not create this account, please ignore this email. You are welcome to reply to this email with any questions or feedback you might have.\n" +
+            "\n" +
+            "Best regards,\n" +
+            "\n" +
+            "The Szakicool Account Team";
 
+        emailComponent.sendMail(user.getEmail(), "Please verfy your registration!", verifyEmailText);
     }
 }

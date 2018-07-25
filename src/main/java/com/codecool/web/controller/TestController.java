@@ -3,6 +3,7 @@ package com.codecool.web.controller;
 
 import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +33,12 @@ public class TestController {
     }
 
     @PostMapping("")
-    public User add(@RequestBody Map<String, String> map) {
+    public User add(@RequestBody Map<String, String> map, HttpServletRequest req) {
         String username = map.get("username");
         String password = map.get("password");
         String confirmationPassword = map.get("confirmationPassword");
         String email = map.get("email");
-        return userService.add(username, password, confirmationPassword, email);
+        return userService.add(username, password, confirmationPassword, email, req);
     }
 
     @PostMapping("/change-password")
