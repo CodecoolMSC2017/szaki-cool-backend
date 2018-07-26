@@ -74,3 +74,19 @@ CREATE TABLE works (
     */
 );
 
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    message TEXT,
+    author_id INTEGER NOT NULL,
+    send_date DATE,
+    FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE message_bindings (
+    id SERIAL PRIMARY KEY,
+    message_id INTEGER NOT NULL,
+    target_id INTEGER NOT NULL,
+    FOREIGN KEY (message_id) REFERENCES messages(id) ON DELETE CASCADE,
+    FOREIGN KEY (target_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
