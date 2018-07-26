@@ -4,6 +4,7 @@ import com.codecool.web.model.Profile;
 import com.codecool.web.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Deprecated
 public class ProfileController {
 
     @Autowired

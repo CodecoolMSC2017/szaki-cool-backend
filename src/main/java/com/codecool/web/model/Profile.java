@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Profile implements Serializable {
 
     @Id
+    @Column(name = "user_id")
     private Integer userId;
 
     private String firstName;
