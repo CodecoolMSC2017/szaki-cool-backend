@@ -4,6 +4,7 @@ import org.hibernate.mapping.ToOne;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "works")
@@ -28,10 +29,27 @@ public class Work {
     @ManyToOne
     @JoinColumn(name = "guarantee_length.id")
     private GuaranteeLength guarantee_length;
+
+    @ElementCollection
+    @CollectionTable(
+        name = "pictures",
+        joinColumns = @JoinColumn(name = "work_id", referencedColumnName = "id")
+    )
+    @Column(name = "name")
+    private List<String> links;
+
     private Date starting_date;
     private Boolean bid;
     private Integer min_bidder_user_rate;
     private Date bid_expire_date;
+
+    public List<String> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<String> links) {
+        this.links = links;
+    }
 
     public Integer getId() {
         return id;
