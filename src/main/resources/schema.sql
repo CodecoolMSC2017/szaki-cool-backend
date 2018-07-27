@@ -1,3 +1,6 @@
+drop table if exists message_bindings;
+drop table if exists messages;
+drop table if exists pictures;
 drop table if exists authorities;
 drop table if exists profiles CASCADE;
 DROP TABLE IF EXISTS works CASCADE;
@@ -72,5 +75,31 @@ CREATE TABLE works (
     /* Possible fields in the future:
         - faq
     */
+);
+
+CREATE TABLE pictures (
+    id SERIAL PRIMARY KEY,
+    promoted BOOLEAN NOT NULL DEFAULT FALSE,
+    work_id INTEGER,
+    name TEXT NOT NULL,
+    FOREIGN KEY (work_id) REFERENCES works(id)
+);
+
+CREATE UNIQUE INDEX promoted_checker ON pictures (work_id) WHERE promoted = true;
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    message TEXT,
+    author_id INTEGER NOT NULL,
+    send_date DATE,
+    FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE message_bindings (
+    id SERIAL PRIMARY KEY,
+    message_id INTEGER NOT NULL,
+    target_id INTEGER NOT NULL,
+    FOREIGN KEY (message_id) REFERENCES messages(id) ON DELETE CASCADE,
+    FOREIGN KEY (target_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
