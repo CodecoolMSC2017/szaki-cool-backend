@@ -1,36 +1,69 @@
 package com.codecool.web.model;
 
-import org.springframework.stereotype.Component;
-
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
-@Component
+@Entity
+@Table(name = "messages")
 public class Message {
-    private String username;
-    private String text;
-    private Date date;
 
-    public String getUsername() {
-        return username;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "message")
+    private String message;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
+
+    private Date sendDate;
+
+
+    @ManyToOne
+    @JoinColumn(name = "users.user_id")
+    private User binding;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getMessage() {
+        return message;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public Date getDate() {
-        return date;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public Date getSendDate() {
+        return sendDate;
+    }
+
+    public void setSendDate(Date sendDate) {
+        this.sendDate = sendDate;
+    }
+
+    public User getBindings() {
+        return binding;
+    }
+
+    public void setBindings(User binding) {
+        this.binding = binding;
     }
 }

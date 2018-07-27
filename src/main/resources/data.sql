@@ -25,3 +25,9 @@ INSERT INTO works (contractor, category, description, sharing_date, due_date, pr
     (2, 'household','Wash1ng 5 dishes within 10 seconds! High quality with low price!', '2018-07-01', '2018-07-20', null, null, null, null, null, false, null, null),
     (2, 'gambling', 'Red goes here and black goes there...', '2018-07-01', '2018-07-30', null, null, null, null, null, true, 3, '2018-08-20')
 ;
+
+INSERT INTO pictures (promoted, work_id, name) VALUES
+    (true, 1, 'kecske.jpg'),
+    (true, 2, 'kecske.jpg')
+;
+
