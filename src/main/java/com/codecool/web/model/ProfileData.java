@@ -13,6 +13,7 @@ public class ProfileData {
     @NotNull
     @NotEmpty
     @Id
+    @GeneratedValue
     @Column(name = "profiles.user_id")
     private long user_id;
 
@@ -26,7 +27,6 @@ public class ProfileData {
 
 
     @Nullable
-
     private String phone;
 
     @Nullable

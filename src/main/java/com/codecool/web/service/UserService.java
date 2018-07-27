@@ -7,6 +7,7 @@ import com.codecool.web.repository.UserRepository;
 import com.codecool.web.security.RandomString;
 import com.codecool.web.service.exceptions.ActivationKeyIsNullException;
 import com.codecool.web.service.exceptions.FaildToFindAccountByVerificationCodeException;
+import org.hibernate.metadata.ClassMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,10 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.util.*;
 
 @Service
@@ -32,6 +37,10 @@ public class UserService {
     @Autowired
     private EmailComponent emailComponent;
 
+    @Autowired
+    private DataSource dataSource;
+
+
     public Iterable<User> getAll() {
         return userRepository.findAll();
     }
@@ -46,6 +55,7 @@ public class UserService {
         iterable.forEach(target::add);
         return target;
     }
+
 
     public String activateUser(String key) throws FaildToFindAccountByVerificationCodeException, ActivationKeyIsNullException {
         List<User> users = getAllRegisteredUserList();
