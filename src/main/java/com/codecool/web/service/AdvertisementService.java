@@ -26,9 +26,6 @@ public class AdvertisementService {
     PictureRepository pictureRepository;
 
     @Autowired
-    ProfileRepo profileRepo;
-
-    @Autowired
     ProfileService profileService;
 
     public List<SimpleAdDto> getSimpleDtos() {
@@ -46,7 +43,7 @@ public class AdvertisementService {
             dto.setUserRating(ratingRepository.getAvarage(userId));
             dto.setNumberOfRatings(ratingRepository.getNumberOfRatings(userId));
             dto.setWorkImgUrl(pictureRepository.findByworkIdAndPromotedTrue(work.getId()).getName());
-            //dto.setUserImgUrl(profileService.findByUserId(Long.valueOf(userId)).getPicture());
+            dto.setUserImgUrl(profileService.findByUserId(userId).getPicture());
             dtos.add(dto);
         }
         return dtos;

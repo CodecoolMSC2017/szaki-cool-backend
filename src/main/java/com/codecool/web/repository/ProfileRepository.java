@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Integer>{
 
-    Optional<Profile> findByUserId(long userId);
+    Optional<Profile> findByUserId(Integer userId);
 
     List<Profile> findAll();
 }

@@ -18,7 +18,7 @@ public class ProfileService {
         return profileRepository.findAll();
     }
 
-    public Optional<Profile> getOptional(long user_id) {
+    public Optional<Profile> getOptional(Integer user_id) {
         return profileRepository.findByUserId(user_id);
     }
 
@@ -26,10 +26,12 @@ public class ProfileService {
         profileRepository.deleteById(user_id);
     }
 
-    public Profile findByUserId(long id) {
+    public Profile findByUserId(Integer id) {
         Optional<Profile> optional = getOptional(id);
-        Profile profile = optional.get();
-        return profile;
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        return null;
     }
 
 
@@ -51,7 +53,7 @@ public class ProfileService {
         return currentProfile;
     }
 
-    public void updateProfileByUserId(long userId, Map<String, String> map) throws NoProfileRegisteredWithThisUserIdException {
+    public void updateProfileByUserId(Integer userId, Map<String, String> map) throws NoProfileRegisteredWithThisUserIdException {
         try {
             Profile profile = profileRepository.findByUserId(userId).get();
             profile = makeProfileFromMap(map, profile);

@@ -15,7 +15,7 @@ public class ProfileData {
     @Id
     @GeneratedValue
     @Column(name = "profiles.user_id")
-    private long user_id;
+    private Integer user_id;
 
     @Nullable
     @Column(name = "profiles.first_name")
@@ -40,11 +40,11 @@ public class ProfileData {
 
 
 
-    public long getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(long user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 

@@ -19,14 +19,14 @@ public class UserProfileController {
     private DataSource dataSource;
 
     @GetMapping("/(id)")
-    public Profile getProfileById(@PathVariable("id") long id) {
+    public Profile getProfileById(@PathVariable("id") Integer id) {
         return profileService.findByUserId(id);
     }
 
     @PostMapping("/update")
     public String updateProfile(@RequestBody Map<String, String> map) throws FailedToParseIdFromProfilePostRequestException {
         try {
-            long userId = Long.parseLong(map.get("userId"));
+            Integer userId = Integer.parseInt(map.get("userId"));
             profileService.updateProfileByUserId(userId, map);
         }
         catch (Exception e) {

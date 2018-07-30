@@ -1,6 +1,8 @@
 package com.codecool.web.model;
 
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
