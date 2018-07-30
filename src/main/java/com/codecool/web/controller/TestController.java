@@ -1,12 +1,17 @@
 package com.codecool.web.controller;
 
 
+import com.codecool.web.dto.SimpleAdDto;
 import com.codecool.web.model.User;
+import com.codecool.web.repository.RatingRepository;
+import com.codecool.web.service.AdvertisementService;
 import com.codecool.web.service.UserService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Null;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,7 +20,13 @@ import java.util.Optional;
 public class TestController {
 
     @Autowired
+    private RatingRepository ratingRepository;
+
+    @Autowired
     private UserService userService;
+
+    @Autowired
+    private AdvertisementService advertisementService;
 
     @GetMapping("")
     public Iterable<User> getAll() {
@@ -52,5 +63,20 @@ public class TestController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) {
         userService.delete(id);
+    }
+
+    @GetMapping("/avg")
+    public Float getAvg() {
+        return ratingRepository.getAvarage(1);
+    }
+
+    @GetMapping("/sum")
+    public Integer getSum() {
+        return ratingRepository.getNumberOfRatings(1);
+    }
+
+    @GetMapping("/data")
+    public List<SimpleAdDto> listSimple(){
+        return advertisementService.getSimpleDtos();
     }
 }

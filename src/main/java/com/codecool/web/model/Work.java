@@ -1,6 +1,5 @@
 package com.codecool.web.model;
 
-import org.hibernate.mapping.ToOne;
 
 import javax.persistence.*;
 import java.sql.Date;

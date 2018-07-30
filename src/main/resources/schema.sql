@@ -1,3 +1,4 @@
+drop table if exists ratings;
 drop table if exists message_bindings;
 drop table if exists messages;
 drop table if exists pictures;
@@ -101,5 +102,12 @@ CREATE TABLE message_bindings (
     target_id INTEGER NOT NULL,
     FOREIGN KEY (message_id) REFERENCES messages(id) ON DELETE CASCADE,
     FOREIGN KEY (target_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+create table ratings (
+    id SERIAL PRIMARY KEY,
+    work_id INTEGER,
+    rating integer,
+    FOREIGN KEY (work_id) REFERENCES works(id)
 );
 
