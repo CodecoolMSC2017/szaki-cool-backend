@@ -93,11 +93,7 @@ public class UserService {
             AuthorityUtils.createAuthorityList("USER_ROLE")));
             try {
                 User user = assembleUser(username, email, req);
-                Profile currentProfile = profileRepository.findByUserId(user.getId()).get();
-                currentProfile.setPicture("/default/");
-
-
-
+                makeEmptyProfileOnRegistration(user);
 
                 return user;
             }
@@ -106,9 +102,14 @@ public class UserService {
             }
     }
 
-    private void makeEmptyProfileOnRegistration(){
-
-
+    private void makeEmptyProfileOnRegistration(User user) throws NoSuchElementException{
+        try {
+            Profile defaultProfile = new Profile(user.getId());
+            profileRepository.save(defaultProfile);
+        }
+        catch (NoSuchElementException ns) {
+            throw new NoSuchElementException(ns.getMessage() + " from makeEmptyProfileOnRegistration method");
+        }
     }
 
 

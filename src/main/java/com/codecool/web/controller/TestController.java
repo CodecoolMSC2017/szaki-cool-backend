@@ -3,17 +3,19 @@ package com.codecool.web.controller;
 
 import com.codecool.web.dto.SimpleAdDto;
 import com.codecool.web.model.User;
+import com.codecool.web.model.Work;
 import com.codecool.web.repository.RatingRepository;
 import com.codecool.web.service.AdvertisementService;
 import com.codecool.web.service.UserService;
+import com.codecool.web.service.WorkService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Null;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping("/users")
@@ -27,6 +29,9 @@ public class TestController {
 
     @Autowired
     private AdvertisementService advertisementService;
+
+    @Autowired
+    private WorkService workService;
 
     @GetMapping("")
     public Iterable<User> getAll() {
@@ -79,4 +84,24 @@ public class TestController {
     public List<SimpleAdDto> listSimple(){
         return advertisementService.getSimpleDtos();
     }
+
+    @GetMapping("/dates")
+    public String testDateFormat(){
+        Date date = new Date();
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String s = formatter.format(date);
+        return s;
+    }
+
+    @GetMapping("/workaddtest")
+    public Work addWork(){
+        Map<String, String> test = new HashMap<>();
+        test.put("description", "asd");
+        test.put("userId", "1");
+        test.put("category", "programming");
+        test.put("dueDate", "2020-01-01 00:00:00");
+        test.put("price", "6000000");
+        return workService.addWork(test);
+    }
+
 }

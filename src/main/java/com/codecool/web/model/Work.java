@@ -18,8 +18,8 @@ public class Work {
     private User contractor;
     private String description;
     private String category;
-    private Date sharing_date;
-    private Date due_date;
+    private String sharing_date;
+    private String due_date;
     private Integer price;
     @ManyToOne
     @JoinColumn(name = "currency.id")
@@ -37,10 +37,10 @@ public class Work {
     @Column(name = "name")
     private List<String> links;
 
-    private Date starting_date;
+    private String starting_date;
     private Boolean bid;
     private Integer min_bidder_user_rate;
-    private Date bid_expire_date;
+    private String bid_expire_date;
 
     public List<String> getLinks() {
         return links;
@@ -66,13 +66,6 @@ public class Work {
         return category;
     }
 
-    public Date getSharing_date() {
-        return sharing_date;
-    }
-
-    public Date getDue_date() {
-        return due_date;
-    }
 
     public Integer getPrice() {
         return price;
@@ -90,9 +83,6 @@ public class Work {
         return guarantee_length;
     }
 
-    public Date getStarting_date() {
-        return starting_date;
-    }
 
     public Boolean getBid() {
         return bid;
@@ -102,9 +92,6 @@ public class Work {
         return min_bidder_user_rate;
     }
 
-    public Date getBid_expire_date() {
-        return bid_expire_date;
-    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -122,13 +109,6 @@ public class Work {
         this.category = category;
     }
 
-    public void setSharing_date(Date sharing_date) {
-        this.sharing_date = sharing_date;
-    }
-
-    public void setDue_date(Date due_date) {
-        this.due_date = due_date;
-    }
 
     public void setPrice(Integer price) {
         this.price = price;
@@ -146,9 +126,6 @@ public class Work {
         this.guarantee_length = guarantee_length;
     }
 
-    public void setStarting_date(Date starting_date) {
-        this.starting_date = starting_date;
-    }
 
     public void setBid(Boolean bid) {
         this.bid = bid;
@@ -158,7 +135,37 @@ public class Work {
         this.min_bidder_user_rate = min_bidder_user_rate;
     }
 
-    public void setBid_expire_date(Date bid_expire_date) {
+    public String getSharing_date() {
+        return sharing_date;
+    }
+
+    public void setSharing_date(String sharing_date) {
+        this.sharing_date = sharing_date;
+    }
+
+    public String getDue_date() {
+        return due_date;
+    }
+
+    public void setDue_date(String due_date) {
+        this.due_date = due_date;
+    }
+
+    public String getStarting_date() {
+        return starting_date;
+    }
+
+    public void setStarting_date(String starting_date) {
+        this.starting_date = starting_date;
+    }
+
+
+    public String getBid_expire_date() {
+        return bid_expire_date;
+    }
+
+    public void setBid_expire_date(String bid_expire_date) {
         this.bid_expire_date = bid_expire_date;
     }
+
 }
