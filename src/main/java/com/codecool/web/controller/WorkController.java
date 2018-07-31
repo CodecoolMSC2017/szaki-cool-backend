@@ -7,7 +7,9 @@ import com.codecool.web.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/works")
@@ -27,6 +29,11 @@ public class WorkController {
     @GetMapping("/simple")
     public List<SimpleAdDto> listSimple(){
         return advertisementService.getSimpleDtos();
+    }
+
+    @PostMapping("/addnew")
+    public Work register(@RequestBody Map<String, String> map) {
+        return workService.addWork(map);
     }
 
     @GetMapping("/{id}")

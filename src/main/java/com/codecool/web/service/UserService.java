@@ -2,7 +2,9 @@ package com.codecool.web.service;
 
 
 import com.codecool.web.component.EmailComponent;
+import com.codecool.web.model.Profile;
 import com.codecool.web.model.User;
+import com.codecool.web.repository.ProfileRepository;
 import com.codecool.web.repository.UserRepository;
 import com.codecool.web.security.RandomString;
 import com.codecool.web.service.exceptions.ActivationKeyIsNullException;
@@ -39,6 +41,9 @@ public class UserService {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private ProfileRepository profileRepository;
 
 
     public Iterable<User> getAll() {
@@ -87,21 +92,40 @@ public class UserService {
             passwordEncoder.encode(password),
             AuthorityUtils.createAuthorityList("USER_ROLE")));
             try {
-                RandomString rs = new RandomString(10, new Random());
-                String activationCode = rs.nextString();
-                User user = userRepository.findByUsername(username).get();
-                user.setEmail(email);
-                user.setEnabled(false);
-                user.setActivationCode(activationCode);
-                user = userRepository.save(user);
-
-                manageEmailVerification(user, req);
+                User user = assembleUser(username, email, req);
+                makeEmptyProfileOnRegistration(user);
 
                 return user;
             }
             catch (NoSuchElementException x) {
                 throw new NoSuchElementException("No value present");
             }
+    }
+
+    private void makeEmptyProfileOnRegistration(User user) throws NoSuchElementException{
+        try {
+            Profile defaultProfile = new Profile(user.getId());
+            profileRepository.save(defaultProfile);
+        }
+        catch (NoSuchElementException ns) {
+            throw new NoSuchElementException(ns.getMessage() + " from makeEmptyProfileOnRegistration method");
+        }
+    }
+
+
+    private User assembleUser(String username, String email, HttpServletRequest req){
+        RandomString rs = new RandomString(10, new Random());
+        String activationCode = rs.nextString();
+        User user = userRepository.findByUsername(username).get();
+        user.setEmail(email);
+        user.setEnabled(false);
+        user.setActivationCode(activationCode);
+        user = userRepository.save(user);
+
+        manageEmailVerification(user, req);
+
+        return user;
+
     }
 
     public Optional<User> get(Integer id) {

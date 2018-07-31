@@ -1,8 +1,6 @@
 package com.codecool.web.model;
 
 
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -25,6 +23,14 @@ public class Profile implements Serializable {
     private String picture;
 
     private String description;
+
+    public Profile(Integer userId) {
+        picture = "default.png";
+        this.userId = userId;
+    }
+
+    public Profile() {
+    }
 
     public Integer getUserId() {
         return userId;

@@ -29,13 +29,13 @@ create table authorities (
 );
 
 CREATE TABLE profiles (
-    user_id SERIAL PRIMARY KEY, /* user_id should be the PRIMARY KEY */
-    first_name TEXT NULL,
-    last_name TEXT NULL,
-    phone INT NULL,
-    address TEXT NULL,
-    picture TEXT NULL,
-    description TEXT NULL,
+    user_id INT PRIMARY KEY, /* user_id should be the PRIMARY KEY */
+    first_name TEXT,
+    last_name TEXT,
+    phone TEXT,
+    address TEXT,
+    picture TEXT,
+    description TEXT,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
     /* Possible fields in the future:
         - short_introduction
@@ -58,18 +58,19 @@ CREATE TABLE guarantee_length (
 CREATE TABLE works (
     id SERIAL PRIMARY KEY,
     contractor INT NOT NULL, /* owner */
+    title TEXT NOT NULL,
     description TEXT NOT NULL,
     category TEXT NOT NULL,
-    sharing_date DATE NOT NULL,
-    due_date DATE NOT NULL,
+    sharing_date TEXT NOT NULL,
+    starting_date TEXT NULL,
+    due_date TEXT NOT NULL,
     price INT NULL,
     currency_id INT NULL,
     guarantee_value INT NULL,
     guarantee_length_id INT NULL,
-    starting_date DATE NULL,
     bid BOOLEAN DEFAULT false,
     min_bidder_user_rate INT NULL,
-    bid_expire_date DATE NULL,
+    bid_expire_date TEXT NULL,
     FOREIGN KEY (contractor) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (currency_id) REFERENCES currency(id),
     FOREIGN KEY (guarantee_length_id) REFERENCES guarantee_length(id)

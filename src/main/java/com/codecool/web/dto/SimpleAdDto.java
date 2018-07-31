@@ -9,11 +9,20 @@ public class SimpleAdDto {
     private String userImgUrl;
 
     private String userName;
+    private String title;
     private String description;
 
     private Float userRating;
     private Integer numberOfRatings;
     private Integer price;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getWorkImgUrl() {
         return workImgUrl;
