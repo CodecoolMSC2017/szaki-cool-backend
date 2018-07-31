@@ -29,11 +29,9 @@ public class WorkService {
     }
 
     public Work addWork(Map<String, String> workMap){
-
         try {
             Work work = assembleWork(workMap);
             workRepository.save(work);
-
             return work;
         }
         catch (NoSuchElementException ns){
@@ -41,7 +39,7 @@ public class WorkService {
         }
     }
 
-    //not tested
+
     private Work assembleWork(Map<String, String> workMap) throws NoSuchElementException {
         Work work = new Work();
 
