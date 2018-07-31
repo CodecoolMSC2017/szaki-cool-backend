@@ -105,13 +105,13 @@ public class TestController {
         return workService.addWork(test);
     }
 
-    @GetMapping("/worksearchname/{name}")
+    @GetMapping("/worksearch/{name}")
     public List<Work> searchWorkTest(@PathVariable("name") String name){
         return workService.findAllByUserName(name);
     }
 
-    @GetMapping("worksearchcategory/{category}")
-    public List<Work> getAdvByCategory(@PathVariable("category") String category){
-        return workService.findAllByCategory(category);
+    @GetMapping("worksearch/{name}/{category}")
+    public List<Work> getAdvByNameAndCategory(@PathVariable("category") String category, @PathVariable("name") String userName){
+        return workService.findByCategoryAndUserName(userName, category);
     }
 }

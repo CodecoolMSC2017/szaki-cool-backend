@@ -41,13 +41,18 @@ public class WorkController {
        return workService.getById(id);
     }
 
-    @GetMapping("searchname/{name}")
+    @GetMapping("searc/name/{name}")
     public List<Work> getAdvByUserName(@PathVariable("name") String userName){
         return workService.findAllByUserName(userName);
     }
 
-    @GetMapping("searchcategory/{category}")
+    @GetMapping("search/category/{category}")
     public List<Work> getAdvByCategory(@PathVariable("category") String category){
         return workService.findAllByCategory(category);
+    }
+
+    @GetMapping("search/catandname/{name}/{category}")
+    public List<Work> getAdvByNameAndCategory(@PathVariable("category") String category, @PathVariable("name") String userName){
+        return workService.findByCategoryAndUserName(userName, category);
     }
 }

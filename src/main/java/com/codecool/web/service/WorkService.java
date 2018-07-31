@@ -56,6 +56,18 @@ public class WorkService {
         return work;
     }
 
+    public List<Work> findByCategoryAndUserName(String userName, String category) throws NoSuchElementException{
+        List<Work> works = workRepository.findAll();
+        int userId = userRepository.findByUsername(userName).get().getId();
+        List<Work> result = new ArrayList<>();
+        for (Work w: works) {
+            if(w.getContractor().getId() == userId && w.getCategory().equals(category)){
+                result.add(w);
+            }
+        }
+        return result;
+    }
+
     public List<Work> findAllByUserName(String userName) throws NoSuchElementException {
         int userId = userRepository.findByUsername(userName).get().getId();
         List<Work> works = workRepository.findAll();
@@ -78,5 +90,4 @@ public class WorkService {
         }
         return result;
     }
-
 }
