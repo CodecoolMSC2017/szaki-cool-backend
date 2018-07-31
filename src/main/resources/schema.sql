@@ -58,6 +58,7 @@ CREATE TABLE guarantee_length (
 CREATE TABLE works (
     id SERIAL PRIMARY KEY,
     contractor INT NOT NULL, /* owner */
+    title TEXT NOT NULL,
     description TEXT NOT NULL,
     category TEXT NOT NULL,
     sharing_date DATE NOT NULL,

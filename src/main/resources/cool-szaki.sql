@@ -75,6 +75,7 @@ CREATE TABLE works (
     id SERIAL PRIMARY KEY,
     contractor INT NOT NULL, /* owner */
     description TEXT NOT NULL,
+    title TEXT NOT NULL,
     category TEXT NOT NULL,
     sharing_date DATE NOT NULL,
     due_date DATE NOT NULL,
