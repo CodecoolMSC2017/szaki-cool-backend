@@ -4,7 +4,7 @@ insert into authorities (username, authority) values ('admin', 'ROLE_ADMIN');
 
 
 INSERT INTO profiles (user_id, first_name, last_name, phone, address, picture, description) VALUES
-    (1, 'John', 'Smith', '12345', 'UK', 'user_pic_1.jpg', 'Hi, Im John');
+    (1, 'John', 'Smith', '12345', 'UK', 'default.png', 'Hi, Im John');
 
 INSERT INTO currency (currency) VALUES
     ('HUF'),
