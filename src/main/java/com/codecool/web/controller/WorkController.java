@@ -35,4 +35,9 @@ public class WorkController {
     public Work register(@RequestBody Map<String, String> map) {
         return workService.addWork(map);
     }
+
+    @GetMapping("/{id}")
+    public Work getById(@PathVariable("id") Integer id) {
+       return workService.getById(id);
+    }
 }

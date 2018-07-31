@@ -24,6 +24,10 @@ public class WorkService {
         return workRepository.findAll();
     }
 
+    public Work getById(Integer id) {
+        return workRepository.findById(id).get();
+    }
+
     public Work addWork(Map<String, String> workMap){
 
         try {
@@ -42,6 +46,7 @@ public class WorkService {
         Work work = new Work();
 
         work.setContractor(userRepository.findById(Integer.parseInt(workMap.get("userId"))).get());
+        work.setTitle(workMap.get("title"));
         work.setDescription(workMap.get("description"));
         work.setCategory(workMap.get("category"));
         work.setSharing_date(DateHandler.currentDate());

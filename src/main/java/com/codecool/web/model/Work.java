@@ -16,6 +16,7 @@ public class Work {
     @ManyToOne
     @JoinColumn(name = "contractor")
     private User contractor;
+    private String title;
     private String description;
     private String category;
     private String sharing_date;
@@ -41,6 +42,14 @@ public class Work {
     private Boolean bid;
     private Integer min_bidder_user_rate;
     private String bid_expire_date;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public List<String> getLinks() {
         return links;

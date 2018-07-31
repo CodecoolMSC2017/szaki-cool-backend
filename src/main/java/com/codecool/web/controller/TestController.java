@@ -96,6 +96,7 @@ public class TestController {
     @GetMapping("/workaddtest")
     public Work addWork(){
         Map<String, String> test = new HashMap<>();
+        test.put("title", "test");
         test.put("description", "asd");
         test.put("userId", "1");
         test.put("category", "programming");
