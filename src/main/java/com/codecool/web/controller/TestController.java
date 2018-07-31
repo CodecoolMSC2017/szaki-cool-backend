@@ -8,11 +8,11 @@ import com.codecool.web.repository.RatingRepository;
 import com.codecool.web.service.AdvertisementService;
 import com.codecool.web.service.UserService;
 import com.codecool.web.service.WorkService;
+import com.codecool.web.service.exceptions.InsufficientDataProvidedException;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Null;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -105,4 +105,13 @@ public class TestController {
         return workService.addWork(test);
     }
 
+    @GetMapping("/worksearchname/{name}")
+    public List<Work> searchWorkTest(@PathVariable("name") String name){
+        return workService.findAllByUserName(name);
+    }
+
+    @GetMapping("worksearchcategory/{category}")
+    public List<Work> getAdvByCategory(@PathVariable("category") String category){
+        return workService.findAllByCategory(category);
+    }
 }

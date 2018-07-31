@@ -4,9 +4,11 @@ import com.codecool.web.date.DateHandler;
 import com.codecool.web.model.Work;
 import com.codecool.web.repository.UserRepository;
 import com.codecool.web.repository.WorkRepository;
+import com.codecool.web.service.exceptions.InsufficientDataProvidedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -52,6 +54,29 @@ public class WorkService {
         work.setPrice(Integer.parseInt(workMap.get("price")));
 
         return work;
+    }
+
+    public List<Work> findAllByUserName(String userName) throws NoSuchElementException {
+        int userId = userRepository.findByUsername(userName).get().getId();
+        List<Work> works = workRepository.findAll();
+        List<Work> result = new ArrayList<>();
+        for (Work w : works) {
+            if(w.getContractor().getId() == userId){
+                result.add(w);
+            }
+        }
+        return result;
+    }
+
+    public List<Work> findAllByCategory(String category) throws NoSuchElementException{
+        List<Work> works = workRepository.findAll();
+        List<Work> result = new ArrayList<>();
+        for (Work w: works) {
+            if(w.getCategory().equals(category)){
+                result.add(w);
+            }
+        }
+        return result;
     }
 
 }
