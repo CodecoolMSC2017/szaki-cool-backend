@@ -17,4 +17,8 @@ public class WorkService {
         return workRepository.findAll();
     }
 
+    public Work getById(Integer id) {
+        return workRepository.findById(id).get();
+    }
+
 }

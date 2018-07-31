@@ -5,9 +5,7 @@ import com.codecool.web.model.Work;
 import com.codecool.web.service.AdvertisementService;
 import com.codecool.web.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +27,10 @@ public class WorkController {
     @GetMapping("/simple")
     public List<SimpleAdDto> listSimple(){
         return advertisementService.getSimpleDtos();
+    }
+
+    @GetMapping("/{id}")
+    public Work getById(@PathVariable("id") Integer id) {
+       return workService.getById(id);
     }
 }
