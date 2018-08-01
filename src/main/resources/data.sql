@@ -22,14 +22,14 @@ INSERT INTO guarantee_length (guarantee_length) VALUES
 
 INSERT INTO works (contractor, title, category, description, sharing_date, due_date, price, currency_id, guarantee_value, guarantee_length_id, starting_date, bid, min_bidder_user_rate, bid_expire_date) VALUES
     (1, 'title', 'art', 'Family photos within 1 day!', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 35, 1, 6, 3, '2018-07-03 00:00:00', false, null, null),
-    (1, 'title', 'household','Wash1ng 5 dishes within 10 seconds! High quality with low price!', '2018-07-01 00:00:00', '2018-07-20 00:00:00', null, null, null, null, null, false, null, null),
-    (1, 'title', 'gambling', 'Red goes here and black goes there...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', null, null, null, null, null, true, 3, '2018-08-20 00:00:00')
+    (1, 'title', 'household','Wash1ng 5 dishes within 10 seconds! High quality with low price!', '2018-07-01 00:00:00', '2018-07-20 00:00:00', 1000, null, null, null, null, false, null, null),
+    (1, 'title', 'gambling', 'Red goes here and black goes there...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 15, null, null, null, null, true, 3, '2018-08-20 00:00:00')
 ;
 
 INSERT INTO pictures (promoted, work_id, name) VALUES
     (true, 1, 'photographer.jpeg'),
     (true, 2, 'kecske.jpg'),
-    (true, 3, 'kecske.jpg'),
+    (true, 3, 'railway.jpg'),
     (false, 1, 'paint2.jpg'),
     (false, 1, 'paint3.jpg'),
     (false, 1, 'paint4.jpg')
