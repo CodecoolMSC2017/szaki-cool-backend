@@ -7,16 +7,16 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 
 @Service
 public class StorageService {
 
-    @Value("${app-path}")
-    private String path;
 
     public void store(MultipartFile file) throws IOException {
-        System.out.println(path);
-        File convFile = new File(path + "pics/" + file.getOriginalFilename());
+        URL url = StorageService.class.getResource("/pics");
+        String path = url.getPath();
+        File convFile = new File(path + "/" + file.getOriginalFilename());
         convFile.createNewFile();
         FileOutputStream fos = new FileOutputStream(convFile);
         fos.write(file.getBytes());
