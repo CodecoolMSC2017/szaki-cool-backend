@@ -1,8 +1,11 @@
 package com.codecool.web.service;
 
 import com.codecool.web.model.Profile;
+import com.codecool.web.model.User;
 import com.codecool.web.repository.ProfileRepository;
+import com.codecool.web.repository.UserRepository;
 import com.codecool.web.service.exceptions.NoProfileRegisteredWithThisUserIdException;
+import de.perschon.resultflow.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,9 @@ public class ProfileService {
 
     @Autowired
     private ProfileRepository profileRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public Iterable<Profile> getAll() {
         return profileRepository.findAll();
@@ -61,6 +67,16 @@ public class ProfileService {
         }
         catch (NoSuchElementException ns){
             throw new NoProfileRegisteredWithThisUserIdException();
+        }
+    }
+
+    public Result<String, String> getProfilePictureName(Integer id) {
+        Optional<Profile> profile = profileRepository.findByUserId(id);
+        if(profile.isPresent()){
+            return Result.ok(profile.get().getPicture());
+        }
+        else {
+            return Result.err("No profile found by this id");
         }
     }
 

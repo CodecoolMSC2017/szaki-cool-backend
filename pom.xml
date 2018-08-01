@@ -52,6 +52,13 @@
             <version>2.0.1.RELEASE</version>
         </dependency>
 
+        <!-- Rust's result type -->
+        <dependency>
+            <groupId>com.github.leopard2a5</groupId>
+            <artifactId>result-flow</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
