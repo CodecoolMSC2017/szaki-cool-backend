@@ -19,7 +19,7 @@ public class UserProfileController {
     @Autowired
     private DataSource dataSource;
 
-    @GetMapping("/(id)")
+    @GetMapping("/{id}")
     public Profile getProfileById(@PathVariable("id") Integer id) {
         return profileService.findByUserId(id);
     }
