@@ -2,6 +2,8 @@ package com.codecool.web.dto;
 
 import org.springframework.stereotype.Component;
 
+//import javax.xml.soap.SAAJResult;
+
 @Component
 public class SimpleAdDto {
 

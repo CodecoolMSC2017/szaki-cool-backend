@@ -64,13 +64,23 @@ INSERT INTO guarantee_length (guarantee_length) VALUES
 
 INSERT INTO works (contractor, title, description, sharing_date, due_date, price, currency_id, guarantee_value, guarantee_length_id, starting_date, bid, min_bidder_user_rate, bid_expire_date) VALUES
     (1, 'Family photos', 'Family photos within 1 day!', '2018-07-01', '2018-07-30', 35, 1, 6, 3, '2018-07-03', false, null, null),
-    (2, 'Washing dishes', 'Wash1ng 5 dishes within 10 seconds! High quality with low price!', '2018-07-01', '2018-07-20', null, null, null, null, null, false, null, null),
-    (2, 'Red and Black', 'Red goes here and black goes there...', '2018-07-01', '2018-07-30', null, null, null, null, null, true, 3, '2018-08-20')
+    (1, 'Washing dishes', 'Wash1ng 5 dishes within 10 seconds! High quality with low price!', '2018-07-01', '2018-07-20', null, null, null, null, null, false, null, null),
+    (1, 'Red and Black', 'Red goes here and black goes there...', '2018-07-01', '2018-07-30', null, null, null, null, null, true, 3, '2018-08-20'),
+    (2, 'title', 'butcher', 'Little piggies go to Heaven', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 15, 4, 2, 1, '2018-07-03 00:00:00', false, null, null),
+    (2, 'Turbo charger upgrade', 'car mechanic','High valued service with the lowest price!', '2018-07-01 00:00:00', '2018-07-20 00:00:00', null, null, null, null, null, false, null, null),
+    (2, 'Clean dishes, easy life', 'dish washer', 'I will do no matter how dirty...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', null, null, null, null, null, true, 3, '2018-08-20 00:00:00')
 ;
 
 INSERT INTO work_images (work_id, image) VALUES
-    (1, 'family_1.jpg'),
-    (1, 'family_2.jpg')
+    (true, 1, 'photographer.jpeg'),
+    (true, 2, 'kecske.jpg'),
+    (true, 3, 'railway.jpg'),
+    (false, 1, 'paint2.jpg'),
+    (false, 1, 'paint3.jpg'),
+    (false, 1, 'paint4.jpg'),
+    (true, 4, 'paint4.jpg'),
+    (true, 5, 'paint3.jpg'),
+    (true, 6, 'paint2.jpg')
 ;
 
 INSERT INTO orders (work_id, customer, date_completed) VALUES
