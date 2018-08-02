@@ -24,20 +24,12 @@ public class ProfileService {
         return profileRepository.findAll();
     }
 
-    public Optional<Profile> getOptional(Integer user_id) {
-        return profileRepository.findByUserId(user_id);
-    }
-
     public void delete(Integer user_id) {
         profileRepository.deleteById(user_id);
     }
 
     public Profile findByUserId(Integer id) {
-        Optional<Profile> optional = getOptional(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        return profileRepository.findByUserId(id).get();
     }
 
 
@@ -54,7 +46,7 @@ public class ProfileService {
         currentProfile.setPhone(map.get("phone"));
         currentProfile.setAddress(map.get("address"));
         currentProfile.setPicture(map.get("picture"));
-        currentProfile.setPicture(map.get("description"));
+        currentProfile.setDescription(map.get("description"));
 
         return currentProfile;
     }
@@ -79,7 +71,4 @@ public class ProfileService {
             return Result.err("No profile found by this id");
         }
     }
-
-
-
 }
