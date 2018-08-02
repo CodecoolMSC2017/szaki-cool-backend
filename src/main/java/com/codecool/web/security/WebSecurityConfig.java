@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
             .authorizeRequests()
-            .antMatchers("/register", "/users/check/*", "/account", "/pics/*")
+            .antMatchers("/register", "/users/check/*", "/account", "/pics/*", "/works/*")
             .permitAll();
 
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());

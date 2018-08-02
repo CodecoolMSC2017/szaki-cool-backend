@@ -26,6 +26,7 @@ public class WorkController {
         return workService.getAll();
     }
 
+    // Have to handle when no picture on the ads! eg: default pic
     @GetMapping("/simple")
     public List<SimpleAdDto> listSimple(){
         return advertisementService.getSimpleDtos();
@@ -36,7 +37,7 @@ public class WorkController {
         return workService.addWork(map);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/works/{id}")
     public Work getById(@PathVariable("id") Integer id) {
        return workService.getById(id);
     }

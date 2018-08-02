@@ -40,6 +40,7 @@ public class AdvertisementService {
 
             Integer userId = work.getContractor().getId();
 
+            dto.setId(work.getId());
             dto.setUserRating(ratingRepository.getAvarage(userId));
             dto.setNumberOfRatings(ratingRepository.getNumberOfRatings(userId));
             dto.setWorkImgUrl(pictureRepository.findByworkIdAndPromotedTrue(work.getId()).getName());

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleAdDto {
 
+    private Integer id;
+
     private String workImgUrl;
     private String userImgUrl;
 
@@ -78,5 +80,13 @@ public class SimpleAdDto {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
