@@ -19,14 +19,8 @@ public class FileUploadController {
 
 
     @PostMapping("/file")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-        try {
-            storageService.store(file);
-            return "OK";
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "Failed to store file";
-        }
+    public void handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+        storageService.store(file);
     }
 
 }
