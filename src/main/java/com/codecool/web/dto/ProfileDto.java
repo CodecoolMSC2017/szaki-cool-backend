@@ -2,7 +2,7 @@ package com.codecool.web.dto;
 
 public class ProfileDto {
 
-    private long user_id;
+    private Integer user_id;
     private String first_name;
     private String last_name;
     private String phone;
@@ -10,11 +10,11 @@ public class ProfileDto {
     private String picture;
     private String description;
 
-    public long getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(long user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 

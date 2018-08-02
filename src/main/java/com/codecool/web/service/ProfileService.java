@@ -1,8 +1,11 @@
 package com.codecool.web.service;
 
 import com.codecool.web.model.Profile;
+import com.codecool.web.model.User;
 import com.codecool.web.repository.ProfileRepository;
+import com.codecool.web.repository.UserRepository;
 import com.codecool.web.service.exceptions.NoProfileRegisteredWithThisUserIdException;
+import de.perschon.resultflow.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +17,11 @@ public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public Iterable<Profile> getAll() {
         return profileRepository.findAll();
-    }
-
-    public Optional<Profile> getOptional(Integer user_id) {
-        return profileRepository.findByUserId(user_id);
     }
 
     public void delete(Integer user_id) {
@@ -27,11 +29,7 @@ public class ProfileService {
     }
 
     public Profile findByUserId(Integer id) {
-        Optional<Profile> optional = getOptional(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        return profileRepository.findByUserId(id).get();
     }
 
 
@@ -48,7 +46,7 @@ public class ProfileService {
         currentProfile.setPhone(map.get("phone"));
         currentProfile.setAddress(map.get("address"));
         currentProfile.setPicture(map.get("picture"));
-        currentProfile.setPicture(map.get("description"));
+        currentProfile.setDescription(map.get("description"));
 
         return currentProfile;
     }
@@ -64,6 +62,13 @@ public class ProfileService {
         }
     }
 
-
-
+    public Result<String, String> getProfilePictureName(Integer id) {
+        Optional<Profile> profile = profileRepository.findByUserId(id);
+        if(profile.isPresent()){
+            return Result.ok(profile.get().getPicture());
+        }
+        else {
+            return Result.err("No profile found by this id");
+        }
+    }
 }

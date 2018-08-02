@@ -34,7 +34,7 @@ INSERT INTO works (contractor, title, category, description, sharing_date, due_d
 INSERT INTO pictures (promoted, work_id, name) VALUES
     (true, 1, 'photographer.jpeg'),
     (true, 2, 'kecske.jpg'),
-    (true, 3, 'kecske.jpg'),
+    (true, 3, 'railway.jpg'),
     (false, 1, 'paint2.jpg'),
     (false, 1, 'paint3.jpg'),
     (false, 1, 'paint4.jpg'),
