@@ -42,7 +42,12 @@ public class WorkController {
        return workService.getById(id);
     }
 
-    @GetMapping("searc/name/{name}")
+    @GetMapping("/search/{str}")
+    public List<SimpleAdDto> getByString(@PathVariable("str") String string) {
+        return advertisementService.getAdsByString(string);
+    }
+
+    @GetMapping("search/name/{name}")
     public List<Work> getAdvByUserName(@PathVariable("name") String userName){
         return workService.findAllByUserName(userName);
     }

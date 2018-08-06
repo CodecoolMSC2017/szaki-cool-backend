@@ -49,4 +49,19 @@ public class AdvertisementService {
         }
         return dtos;
     }
+
+    public List<SimpleAdDto> getAdsByString(String string) {
+        List<SimpleAdDto> simpleAdDtos = getSimpleDtos();
+        List<SimpleAdDto> simpleAdDtosByString = new ArrayList<>();
+        if (string.equals(null) || string.equals("")) {
+            return simpleAdDtos;
+        } else {
+            for (SimpleAdDto temp : simpleAdDtos) {
+                if (temp.getDescription().toLowerCase().contains(string) || temp.getDescription().toLowerCase().contains(string)) {
+                    simpleAdDtosByString.add(temp);
+                }
+            }
+            return simpleAdDtosByString;
+        }
+    }
 }
