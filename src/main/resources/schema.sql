@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS works CASCADE;
 DROP TABLE IF EXISTS guarantee_length;
 DROP TABLE IF EXISTS currency;
 drop table if exists users CASCADE;
+drop table if exists online_users;
 
 
 create table users (
@@ -91,8 +92,10 @@ CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
     message TEXT,
     author_id INTEGER NOT NULL,
+    receiver_id INTEGER NOT NULL,
     send_date DATE,
-    FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE message_bindings (
@@ -102,4 +105,3 @@ CREATE TABLE message_bindings (
     FOREIGN KEY (message_id) REFERENCES messages(id) ON DELETE CASCADE,
     FOREIGN KEY (target_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
-
