@@ -1,11 +1,15 @@
 package com.codecool.web.controller;
 
 
+import com.codecool.web.model.Message;
 import com.codecool.web.model.User;
+import com.codecool.web.repository.MessageRepository;
 import com.codecool.web.service.UserService;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,6 +19,9 @@ public class TestController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    MessageRepository messageRepository;
 
     @GetMapping("")
     public Iterable<User> getAll() {
@@ -51,5 +58,10 @@ public class TestController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) {
         userService.delete(id);
+    }
+
+    @GetMapping("/getMessages/{id}")
+    List<Message> getMessages(@PathVariable("id") Integer id) {
+        return messageRepository.findByreceiverId(id);
     }
 }
