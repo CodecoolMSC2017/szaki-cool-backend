@@ -1,31 +1,23 @@
 package com.codecool.web.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.sql.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "messages")
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue
     private Integer id;
-
-    @Column(name = "message")
+    @Column(name = "author_id")
+    private Integer senderId;
+    @Column(name = "receiver_id")
+    private Integer receiverId;
     private String message;
-
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private User author;
-
-    private Date sendDate;
-
-
-    @ManyToOne
-    @JoinColumn(name = "users.user_id")
-    private User binding;
+    private Date date;
 
     public Integer getId() {
         return id;
@@ -33,6 +25,22 @@ public class Message {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(Integer senderId) {
+        this.senderId = senderId;
+    }
+
+    public Integer getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(Integer receiverId) {
+        this.receiverId = receiverId;
     }
 
     public String getMessage() {
@@ -43,27 +51,11 @@ public class Message {
         this.message = message;
     }
 
-    public User getAuthor() {
-        return author;
+    public Date getDate() {
+        return date;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public Date getSendDate() {
-        return sendDate;
-    }
-
-    public void setSendDate(Date sendDate) {
-        this.sendDate = sendDate;
-    }
-
-    public User getBindings() {
-        return binding;
-    }
-
-    public void setBindings(User binding) {
-        this.binding = binding;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
