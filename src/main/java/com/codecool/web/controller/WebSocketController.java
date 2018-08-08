@@ -29,9 +29,11 @@ public class WebSocketController {
 
     @MessageMapping("/lobby")
     public void sendMessege(Message message) {
-        User user= userService.get(message.getReceiverId()).get();
+        User sendUser= userService.get(message.getSenderId()).get();
+        User toUser = userService.get(message.getReceiverId()).get();
         messageRepository.save(message);
-        this.template.convertAndSendToUser(user.getUsername(), "/reply/", message);
+        this.template.convertAndSendToUser(sendUser.getUsername(), "/reply/", message);
+        this.template.convertAndSendToUser(toUser.getUsername(), "/reply/", message);
     }
 
     /*@MessageMapping("/message")
