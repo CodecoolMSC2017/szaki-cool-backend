@@ -1,7 +1,7 @@
 insert into users (username, password, email, enabled, role, activation_code) values ('admin', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','szakicool@gmail.com', true, 'ADMIN', null);
-insert into users (username, password, email, enabled, role, activation_code) values ('Jimmy', '$2a$10$gks0yrt6re61gaPnpDm6LOXgqQ3QyBr5VZlZQJzF2FnGJ6fMCN0.G','szakicool-user@gmail.com', true, 'USER', null);
+insert into users (username, password, email, enabled, role, activation_code) values ('user', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','szakicool-user@gmail.com', true, 'USER', null);
 insert into authorities (username, authority) values ('admin', 'ROLE_ADMIN');
-insert into authorities (username, authority) values ('Jimmy', 'ROLE_USER');
+insert into authorities (username, authority) values ('user', 'ROLE_USER');
 
 
 INSERT INTO profiles (user_id, first_name, last_name, phone, address, picture, description) VALUES

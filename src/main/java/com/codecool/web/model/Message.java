@@ -1,12 +1,10 @@
 package com.codecool.web.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@Table(name = "messages")
 public class Message {
 
     @Id
@@ -17,6 +15,7 @@ public class Message {
     @Column(name = "receiver_id")
     private Integer receiverId;
     private String message;
+    @Column(name = "send_date")
     private Date date;
 
     public Integer getId() {
