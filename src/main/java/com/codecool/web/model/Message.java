@@ -1,7 +1,10 @@
 package com.codecool.web.model;
 
+import javafx.util.converter.TimeStringConverter;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "messages")
@@ -16,7 +19,7 @@ public class Message {
     private Integer receiverId;
     private String message;
     @Column(name = "send_date")
-    private Date date;
+    private Long date;
 
     public Integer getId() {
         return id;
@@ -50,11 +53,11 @@ public class Message {
         this.message = message;
     }
 
-    public Date getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 }

@@ -94,7 +94,7 @@ CREATE TABLE messages (
     message TEXT,
     author_id INTEGER NOT NULL,
     receiver_id INTEGER NOT NULL,
-    send_date DATE,
+    send_date bigint,
     FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
