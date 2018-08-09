@@ -21,4 +21,9 @@ public class MessagesController {
     List<Message> getMessages(@PathVariable("receiverId") Integer myId, @PathVariable("senderId") Integer otherId) {
         return messageRepository.getMessages(myId, otherId);
     }
+
+    @GetMapping("/conversation/{receiverId}")
+    List<Message> getMyLatestMessages(@PathVariable("receiverId") Integer myId) {
+        return messageRepository.getUserLastMesseges(myId);
+    }
 }
