@@ -1,12 +1,14 @@
 insert into users (username, password, email, enabled, role, activation_code) values ('admin', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','szakicool@gmail.com', true, 'ADMIN', null);
 insert into users (username, password, email, enabled, role, activation_code) values ('user', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','szakicool-user@gmail.com', true, 'USER', null);
+insert into users (username, password, email, enabled, role, activation_code) values ('ProSeller2018', '$2a$10$2Gi3G9XaKalERoIa74OYruEHZyqSUqn10uSiOzk4PvOgL49vejna.','proseller2018@gmail.com', true, 'USER', null);
 insert into authorities (username, authority) values ('admin', 'ROLE_ADMIN');
 insert into authorities (username, authority) values ('user', 'ROLE_USER');
 
 
 INSERT INTO profiles (user_id, first_name, last_name, phone, address, picture, description) VALUES
-    (1, 'John', 'Smith', '12345', 'UK', 'default.png', 'Hi, Im John'),
-    (2, 'Jimmy', 'Smith', '46789', 'UK', 'default.png', 'Hi, Im Jimmy')
+    (1, 'John', 'Smith', '12345', 'UK', 'default.png', 'Hi, I''m John'),
+    (2, 'Jimmy', 'Smith', '46789', 'UK', 'default.png', 'Hi, I''m Jimmy'),
+    (3, 'Paul', 'Brown', '447587828371', 'France', 'default.png', 'I''m a professional who can sell everything in a blink of an eye!')
 ;
 
 INSERT INTO currency (currency) VALUES
@@ -29,7 +31,8 @@ INSERT INTO works (contractor, title, category, description, sharing_date, due_d
     (1, 'title', 'gambling', 'Red goes here and black goes there...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', null, null, null, null, null, true, 3, '2018-08-20 00:00:00'),
     (2, 'Transcription 4 you', 'transcription', 'I will provide fast and flawless audio video transcription', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 15, 3, 2, 1, '2018-07-03 00:00:00', false, null, null),
     (2, 'Turbocharger upgrade', 'car mechanic','High valued service with the lowest price!', '2018-07-01 00:00:00', '2018-07-20 00:00:00', null, null, null, null, null, false, null, null),
-    (2, 'Clean dishes, easy life', 'household', 'I will do no matter how dirty...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', null, null, null, null, null, true, 3, '2018-08-20 00:00:00')
+    (2, 'Clean dishes, easy life', 'household', 'I will do no matter how dirty...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', null, null, null, null, null, true, 3, '2018-08-20 00:00:00'),
+    (3, 'Tattoo - Your skin, your story', 'art', 'I''m a professional tattoo artirts and also a graphic designer. With more than 6 years of experience and over 100 tattoos done by myself, i''m totally qualified to design originals tattoos for you. Feel free to contact me with no compromise. Hope we can work together! I will design the best tattoo art in the market, for the lowest price!', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 80, 3, 1, 4, '2018-07-03 00:00:00', false, null, null)
 ;
 
 INSERT INTO pictures (promoted, work_id, name) VALUES
@@ -41,7 +44,11 @@ INSERT INTO pictures (promoted, work_id, name) VALUES
     (false, 1, 'paint4.jpg'),
     (true, 4, 'transcription.png'),
     (true, 5, 'turbocharger.jpg'),
-    (true, 6, 'clean_dishes.jpg')
+    (true, 6, 'clean_dishes.jpg'),
+    (true, 7, 'work-7-001.jpg'),
+    (false, 7, 'work-7-002.jpg'),
+    (false, 7, 'work-7-003.jpg'),
+    (false, 7, 'work-7-004.jpg')
 ;
 
 INSERT INTO ratings (work_id, rating) VALUES
