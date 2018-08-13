@@ -27,11 +27,11 @@ INSERT INTO guarantee_length (guarantee_length) VALUES
 
 INSERT INTO works (contractor, title, category, description, sharing_date, due_date, price, currency_id, guarantee_value, guarantee_length_id, starting_date, bid, min_bidder_user_rate, bid_expire_date) VALUES
     (1, 'title', 'art', 'Family photos within 1 day!', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 35, 3, 6, 3, '2018-07-03 00:00:00', false, null, null),
-    (1, 'title', 'household','Washing 5 dishes within 10 seconds! High quality with low price!', '2018-07-01 00:00:00', '2018-07-20 00:00:00', null, null, null, null, null, false, null, null),
-    (1, 'title', 'gambling', 'Red goes here and black goes there...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', null, null, null, null, null, true, 3, '2018-08-20 00:00:00'),
+    (1, 'title', 'household','Washing 5 dishes within 10 seconds! High quality with low price!', '2018-07-01 00:00:00', '2018-07-20 00:00:00', 15, 3, 6, 3, null, false, null, null),
+    (1, 'title', 'gambling', 'Red goes here and black goes there...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 10, 3, 12, 3, null, true, 3, '2018-08-20 00:00:00'),
     (2, 'Transcription 4 you', 'transcription', 'I will provide fast and flawless audio video transcription', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 15, 3, 2, 1, '2018-07-03 00:00:00', false, null, null),
-    (2, 'Turbocharger upgrade', 'car mechanic','High valued service with the lowest price!', '2018-07-01 00:00:00', '2018-07-20 00:00:00', null, null, null, null, null, false, null, null),
-    (2, 'Clean dishes, easy life', 'household', 'I will do no matter how dirty...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', null, null, null, null, null, true, 3, '2018-08-20 00:00:00'),
+    (2, 'Turbocharger upgrade', 'car mechanic','High valued service with the lowest price!', '2018-07-01 00:00:00', '2018-07-20 00:00:00', 50, 3, 1, 1, null, false, null, null),
+    (2, 'Clean dishes, easy life', 'household', 'I will do no matter how dirty...', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 30, 3, 1, 1, null, true, 3, '2018-08-20 00:00:00'),
     (3, 'Tattoo - Your skin, your story', 'art', 'I''m a professional tattoo artirts and also a graphic designer. With more than 6 years of experience and over 100 tattoos done by myself, i''m totally qualified to design originals tattoos for you. Feel free to contact me with no compromise. Hope we can work together! I will design the best tattoo art in the market, for the lowest price!', '2018-07-01 00:00:00', '2018-07-30 00:00:00', 80, 3, 1, 4, '2018-07-03 00:00:00', false, null, null)
 ;
 
