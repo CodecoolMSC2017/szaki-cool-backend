@@ -52,7 +52,7 @@ public class WorkController {
         return workService.findAllByUserName(userName);
     }
 
-    @GetMapping("search/category/{category}")
+    @GetMapping("search/category/{category}")    ///similar method in Searchcontroller, delete this later
     public List<Work> getAdvByCategory(@PathVariable("category") String category){
         return workService.findAllByCategory(category);
     }

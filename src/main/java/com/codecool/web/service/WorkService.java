@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 import com.codecool.web.date.DateHandler;
+import com.codecool.web.dto.StringDto;
 import com.codecool.web.model.Work;
 import com.codecool.web.repository.UserRepository;
 import com.codecool.web.repository.WorkRepository;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class WorkService {
@@ -89,5 +92,22 @@ public class WorkService {
             }
         }
         return result;
+    }
+
+
+    public List<StringDto> searchAutofill(String keyword) {
+        List<Work> works = getAll();
+        String pattern = "(\\b" + keyword + "[^\\s]+)";
+        Pattern r = Pattern.compile(pattern);
+        List<StringDto> matches = new ArrayList<>();
+
+
+        for (Work w : works) {
+            Matcher m = r.matcher(w.getCategory());
+            while (m.find()) {
+                matches.add(new StringDto(m.group()));
+            }
+        }
+        return matches;
     }
 }
