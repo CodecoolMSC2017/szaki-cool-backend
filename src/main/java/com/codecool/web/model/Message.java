@@ -21,6 +21,8 @@ public class Message {
     @Column(name = "send_date")
     private Long date;
 
+    private Boolean seen;
+
     public Integer getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class Message {
 
     public void setDate(Long date) {
         this.date = date;
+    }
+
+    public Boolean getSeen() {
+        return seen;
+    }
+
+    public void setSeen(Boolean seen) {
+        this.seen = seen;
     }
 }

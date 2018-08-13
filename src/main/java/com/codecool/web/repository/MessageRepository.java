@@ -17,4 +17,6 @@ public interface MessageRepository extends CrudRepository<Message, Integer> {
 
     @Query(value = "SELECT m FROM Message m where m.id in (SELECT MAX(m.id) from Message m group by m.senderId)")
     List<Message> getUserLastMesseges(Integer myId);
+
+    Message findByReceiverId(Integer id);
 }

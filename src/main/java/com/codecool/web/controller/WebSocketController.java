@@ -5,9 +5,13 @@ import com.codecool.web.model.User;
 import com.codecool.web.repository.MessageRepository;
 import com.codecool.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.Map;
 
 @Controller
 public class WebSocketController {
@@ -34,6 +38,13 @@ public class WebSocketController {
         messageRepository.save(message);
         this.template.convertAndSendToUser(sendUser.getUsername(), "/reply/", message);
         this.template.convertAndSendToUser(toUser.getUsername(), "/reply/", message);
+    }
+
+    @MessageMapping("/updateMessage")
+    public void updateMessage(Message msg) {
+        Message message = messageRepository.findById(msg.getId()).get();
+        message.setSeen(true);
+        messageRepository.save(message);
     }
 
     /*@MessageMapping("/message")
