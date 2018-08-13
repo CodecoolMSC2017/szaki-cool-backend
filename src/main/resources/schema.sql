@@ -93,8 +93,11 @@ CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
     message TEXT,
     author_id INTEGER NOT NULL,
-    send_date DATE,
-    FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE
+    receiver_id INTEGER NOT NULL,
+    send_date bigint,
+    seen boolean not null default false,
+    FOREIGN KEY (author_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE message_bindings (

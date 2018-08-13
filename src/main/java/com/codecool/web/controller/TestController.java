@@ -2,20 +2,26 @@ package com.codecool.web.controller;
 
 
 import com.codecool.web.dto.SimpleAdDto;
+import com.codecool.web.model.Message;
 import com.codecool.web.model.User;
 import com.codecool.web.model.Work;
 import com.codecool.web.repository.RatingRepository;
 import com.codecool.web.service.AdvertisementService;
+import com.codecool.web.repository.MessageRepository;
 import com.codecool.web.service.UserService;
 import com.codecool.web.service.WorkService;
 import com.codecool.web.service.exceptions.InsufficientDataProvidedException;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -32,6 +38,9 @@ public class TestController {
 
     @Autowired
     private WorkService workService;
+
+    @Autowired
+    MessageRepository messageRepository;
 
     @GetMapping("")
     public Iterable<User> getAll() {
@@ -113,5 +122,10 @@ public class TestController {
     @GetMapping("worksearch/{name}/{category}")
     public List<Work> getAdvByNameAndCategory(@PathVariable("category") String category, @PathVariable("name") String userName){
         return workService.findByCategoryAndUserName(userName, category);
+    }
+
+    @GetMapping("/getMessages/{id}")
+    List<Message> getMessages(@PathVariable("id") Integer id) {
+        return messageRepository.findByreceiverId(id);
     }
 }
