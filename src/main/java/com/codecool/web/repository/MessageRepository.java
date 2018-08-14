@@ -19,4 +19,6 @@ public interface MessageRepository extends CrudRepository<Message, Integer> {
     List<Message> getUserLastMesseges(Integer myId);
 
     Message findByReceiverId(Integer id);
+
+    List<Message> findByReceiverIdAndSeenFalse(Integer id);
 }
