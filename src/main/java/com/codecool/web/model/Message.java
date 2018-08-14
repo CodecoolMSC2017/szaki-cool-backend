@@ -21,6 +21,9 @@ public class Message {
     @Column(name = "send_date")
     private Long date;
 
+    @Transient
+    private String type;
+
     private Boolean seen;
 
     public Integer getId() {
@@ -69,5 +72,13 @@ public class Message {
 
     public void setSeen(Boolean seen) {
         this.seen = seen;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
