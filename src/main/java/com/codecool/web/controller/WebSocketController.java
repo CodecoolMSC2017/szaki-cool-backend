@@ -1,5 +1,6 @@
 package com.codecool.web.controller;
 
+import com.codecool.web.dto.TypeDto;
 import com.codecool.web.model.Message;
 import com.codecool.web.model.User;
 import com.codecool.web.repository.MessageRepository;
@@ -36,6 +37,7 @@ public class WebSocketController {
         User sendUser= userService.get(message.getSenderId()).get();
         User toUser = userService.get(message.getReceiverId()).get();
         messageRepository.save(message);
+        checkMessages(toUser.getId());
         this.template.convertAndSendToUser(sendUser.getUsername(), "/reply/", message);
         this.template.convertAndSendToUser(toUser.getUsername(), "/reply/", message);
     }
@@ -44,7 +46,19 @@ public class WebSocketController {
     public void updateMessage(Message msg) {
         Message message = messageRepository.findById(msg.getId()).get();
         message.setSeen(true);
+        checkMessages(message.getReceiverId());
         messageRepository.save(message);
+    }
+
+    public void checkMessages(Integer userId) {
+        User user = userService.get(userId).get();
+        this.template.convertAndSendToUser(user.getUsername(), "/reply/", messageRepository.findByReceiverIdAndSeenFalse(userId).size());
+    }
+
+    @MessageMapping("/typing")
+    public void sendTypeStatus(TypeDto message) {
+        String userName = userService.get(message.getReceiverId()).get().getUsername();
+        this.template.convertAndSendToUser(userName, "/reply/", message);
     }
 
     /*@MessageMapping("/message")
