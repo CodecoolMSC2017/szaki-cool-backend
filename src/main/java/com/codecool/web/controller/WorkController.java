@@ -1,5 +1,6 @@
 package com.codecool.web.controller;
 
+import com.codecool.web.dto.AdvertisementDetailsDto;
 import com.codecool.web.dto.SimpleAdDto;
 import com.codecool.web.model.Work;
 import com.codecool.web.service.AdvertisementService;
@@ -40,6 +41,11 @@ public class WorkController {
     @GetMapping("/works/{id}")
     public Work getById(@PathVariable("id") Integer id) {
        return workService.getById(id);
+    }
+
+    @GetMapping("/details/{id}")
+    public AdvertisementDetailsDto getDetailsById(@PathVariable("id") Integer id) {
+        return advertisementService.getAdvertisementDetails(id);
     }
 
     @GetMapping("/search/{str}")

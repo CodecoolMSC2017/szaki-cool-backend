@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 
+import com.codecool.web.dto.AdvertisementDetailsDto;
 import com.codecool.web.dto.SimpleAdDto;
 import com.codecool.web.model.Work;
 import com.codecool.web.repository.*;
@@ -63,5 +64,25 @@ public class AdvertisementService {
             }
             return simpleAdDtosByString;
         }
+    }
+
+    public AdvertisementDetailsDto getAdvertisementDetails(Integer id){
+        AdvertisementDetailsDto ad = new AdvertisementDetailsDto();
+        Work work = workRepository.getOne(id);
+        Integer userId = work.getContractor().getId();
+
+        ad.setUserId(userId);
+        ad.setUserName(work.getContractor().getUsername());
+        ad.setCurrency(work.getCurrency().getCurrency());
+        ad.setGarantee_length(work.getGuarantee_length().getGuarantee_length());
+        ad.setGarantee_value(work.getGuarantee_value());
+        ad.setNumberOfRatings(ratingRepository.getNumberOfRatings(userId));
+        ad.setUserRating(ratingRepository.getAvarage(userId));
+        ad.setPrice(work.getPrice());
+        ad.setWorkTitle(work.getTitle());
+        ad.setWorkDescription(work.getDescription());
+
+
+        return ad;
     }
 }

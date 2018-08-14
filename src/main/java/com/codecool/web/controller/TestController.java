@@ -1,6 +1,7 @@
 package com.codecool.web.controller;
 
 
+import com.codecool.web.dto.FloatingNumberDto;
 import com.codecool.web.dto.SimpleAdDto;
 import com.codecool.web.model.Message;
 import com.codecool.web.model.User;
@@ -79,9 +80,9 @@ public class TestController {
         userService.delete(id);
     }
 
-    @GetMapping("/avg")
-    public Float getAvg() {
-        return ratingRepository.getAvarage(1);
+    @GetMapping("/avg/{id}")
+    public FloatingNumberDto getAvg(@PathVariable("id") Integer id) {
+        return new FloatingNumberDto(ratingRepository.getAvarage(id));
     }
 
     @GetMapping("/sum")
