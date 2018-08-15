@@ -9,6 +9,7 @@ import com.codecool.web.service.exceptions.InsufficientDataProvidedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class WorkController {
 
     @GetMapping("/works/{id}")
     public Work getById(@PathVariable("id") Integer id) {
-       return workService.getById(id);
+        return workService.getById(id);
     }
 
     @GetMapping("/details/{id}")
@@ -53,9 +54,19 @@ public class WorkController {
         return advertisementService.getAdsByString(string);
     }
 
+    @GetMapping("/categories")
+    public List<String> getCategories() {
+        return advertisementService.getCategories();
+    }
+
     @GetMapping("search/name/{name}")
     public List<Work> getAdvByUserName(@PathVariable("name") String userName){
         return workService.findAllByUserName(userName);
+    }
+
+    @GetMapping("search/{category}/{min}/{max}/{minRating}/{maxRating}")
+    public List<SimpleAdDto> getAdsByCatPriceRating(@PathVariable("category") String category, @PathVariable("min") int minValue, @PathVariable("max") int maxValue, @PathVariable("minRating") float minRating, @PathVariable("maxRating") float maxRating){
+        return advertisementService.getAdsByCatPriceRating(category, minValue, maxValue, minRating, maxRating);
     }
 
     @GetMapping("search/category/{category}")    ///similar method in Searchcontroller, delete this later
@@ -68,3 +79,4 @@ public class WorkController {
         return workService.findByCategoryAndUserName(userName, category);
     }
 }
+
