@@ -47,9 +47,8 @@ public class WebSocketController {
     public void updateMessage(Message msg) {
         Message message = messageRepository.findById(msg.getId()).get();
         message.setSeen(true);
-
-        checkMessages(message.getReceiverId());
         messageRepository.save(message);
+        checkMessages(message.getReceiverId());
     }
 
     public void checkMessages(Integer userId) {
