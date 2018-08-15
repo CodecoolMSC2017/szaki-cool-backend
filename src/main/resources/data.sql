@@ -54,7 +54,12 @@ INSERT INTO pictures (promoted, work_id, name) VALUES
 INSERT INTO ratings (work_id, rating) VALUES
     (1, 4),
     (2, 4),
-    (2, 3)
+    (2, 3),
+    (3, 5),
+    (4, 5),
+    (5, 2),
+    (6, 3),
+    (7, 1)
 ;
 
 
