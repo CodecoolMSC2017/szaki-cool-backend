@@ -104,7 +104,7 @@ public class TestController {
     }
 
     @GetMapping("/workaddtest")
-    public Work addWork(){
+    public Work addWork() throws InsufficientDataProvidedException {
         Map<String, String> test = new HashMap<>();
         test.put("title", "test");
         test.put("description", "asd");

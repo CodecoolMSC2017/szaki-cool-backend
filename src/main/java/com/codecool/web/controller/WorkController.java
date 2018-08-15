@@ -34,7 +34,7 @@ public class WorkController {
     }
 
     @PostMapping("/addnew")
-    public Work register(@RequestBody Map<String, String> map) {
+    public Work register(@RequestBody Map<String, String> map) throws InsufficientDataProvidedException {
         return workService.addWork(map);
     }
 
