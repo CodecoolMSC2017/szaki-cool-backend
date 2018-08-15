@@ -66,6 +66,35 @@ public class AdvertisementService {
         }
     }
 
+    public List<SimpleAdDto> getAdsByCatPriceRating(String category, int minValue, int maxValue, float minRating, float maxRating){
+        List<SimpleAdDto> simpleAdDtos = getSimpleDtos();
+        List<SimpleAdDto> simpleAdDtosByCatPriceRating = new ArrayList<>();
+        List<Work> works = workRepository.findAll();
+        for (SimpleAdDto temp : simpleAdDtos) {
+            for (Work work : works) {
+                if (temp.getId().equals(work.getId()) && work.getCategory().equals(category) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
+                    simpleAdDtosByCatPriceRating.add(temp);
+                }
+
+            }
+        }
+        return simpleAdDtosByCatPriceRating;
+    }
+
+    public List<String> getCategories() {
+        List<String> categories = new ArrayList<>();
+        List<Work> works = workRepository.findAll();
+        for (Work temp : works) {
+            if (categories.contains(temp.getCategory())) {
+                continue;
+            } else {
+                categories.add(temp.getCategory());
+            }
+        }
+        return categories;
+    }
+
+
     public AdvertisementDetailsDto getAdvertisementDetails(Integer id){
         AdvertisementDetailsDto ad = new AdvertisementDetailsDto();
         Work work = workRepository.getOne(id);
@@ -86,3 +115,4 @@ public class AdvertisementService {
         return ad;
     }
 }
+
