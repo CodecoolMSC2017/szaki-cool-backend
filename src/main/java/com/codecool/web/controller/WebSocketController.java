@@ -1,6 +1,7 @@
 package com.codecool.web.controller;
 
 import com.codecool.web.dto.TypeDto;
+import com.codecool.web.dto.UnreadMessageDto;
 import com.codecool.web.model.Message;
 import com.codecool.web.model.User;
 import com.codecool.web.repository.MessageRepository;
@@ -10,7 +11,7 @@ import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -46,6 +47,7 @@ public class WebSocketController {
     public void updateMessage(Message msg) {
         Message message = messageRepository.findById(msg.getId()).get();
         message.setSeen(true);
+
         checkMessages(message.getReceiverId());
         messageRepository.save(message);
     }
@@ -59,6 +61,15 @@ public class WebSocketController {
     public void sendTypeStatus(TypeDto message) {
         String userName = userService.get(message.getReceiverId()).get().getUsername();
         this.template.convertAndSendToUser(userName, "/reply/", message);
+    }
+
+    @ResponseBody
+    @GetMapping("/unreadMessage/{id}")
+    Integer getUnreadMessage(@PathVariable("id") Integer id) {
+        Integer size = messageRepository.findByReceiverIdAndSeenFalse(id).size();
+        UnreadMessageDto u = new UnreadMessageDto();
+        u.setSize(size);
+        return size;
     }
 
     /*@MessageMapping("/message")
