@@ -82,7 +82,11 @@ INSERT INTO ratings (work_id, rating) VALUES
     (4, 5),
     (5, 2),
     (6, 3),
-    (7, 1)
+    (7, 1),
+    (8, 2),
+    (9, 5),
+    (10, 2),
+    (11, 1)
 ;
 
 
