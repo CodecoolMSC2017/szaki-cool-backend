@@ -66,16 +66,67 @@ public class AdvertisementService {
         }
     }
 
-    public List<SimpleAdDto> getAdsByCatPriceRating(String category, int minValue, int maxValue, float minRating, float maxRating){
+    public List<SimpleAdDto> getAdsByCatPriceRating(String category, String minV, String maxV, String minR, String maxR){
         List<SimpleAdDto> simpleAdDtos = getSimpleDtos();
         List<SimpleAdDto> simpleAdDtosByCatPriceRating = new ArrayList<>();
         List<Work> works = workRepository.findAll();
-        for (SimpleAdDto temp : simpleAdDtos) {
-            for (Work work : works) {
-                if (temp.getId().equals(work.getId()) && work.getCategory().equals(category) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
-                    simpleAdDtosByCatPriceRating.add(temp);
+        int minValue;
+        int maxValue = 0;
+        float minRating;
+        float maxRating = 0;
+        if (minV.equals("null")) {
+            minValue = simpleAdDtos.get(0).getPrice();
+            for (SimpleAdDto simpleAdDto : simpleAdDtos) {
+                if (simpleAdDto.getPrice() < minValue) {
+                    minValue = simpleAdDto.getPrice();
                 }
-
+            }
+        } else {
+            minValue = Integer.parseInt(minV);
+        }
+        if (maxV.equals("null")) {
+            for (SimpleAdDto simpleAdDto : simpleAdDtos) {
+                if (simpleAdDto.getPrice() > maxValue) {
+                    maxValue = simpleAdDto.getPrice();
+                }
+            }
+        } else {
+            maxValue = Integer.parseInt(maxV);
+        }
+        if (minR.equals("null")) {
+            minRating = simpleAdDtos.get(0).getUserRating();
+            for (SimpleAdDto simpleAdDto : simpleAdDtos) {
+                if (simpleAdDto.getUserRating() < minRating) {
+                    minRating = simpleAdDto.getUserRating();
+                }
+            }
+        } else {
+            minRating = Float.parseFloat(minR);
+        }
+        if (maxR.equals("null")) {
+            for (SimpleAdDto simpleAdDto : simpleAdDtos) {
+                if (simpleAdDto.getUserRating() > maxRating) {
+                    maxRating = simpleAdDto.getUserRating();
+                }
+            }
+        } else {
+            maxRating = Float.parseFloat(maxR);
+        }
+        if (category.equals("null")) {
+            for (SimpleAdDto temp : simpleAdDtos) {
+                for (Work work : works) {
+                    if (temp.getId().equals(work.getId()) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
+                        simpleAdDtosByCatPriceRating.add(temp);
+                    }
+                }
+            }
+        } else {
+            for (SimpleAdDto temp : simpleAdDtos) {
+                for (Work work : works) {
+                    if (temp.getId().equals(work.getId()) && work.getCategory().equals(category) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
+                        simpleAdDtosByCatPriceRating.add(temp);
+                    }
+                }
             }
         }
         return simpleAdDtosByCatPriceRating;

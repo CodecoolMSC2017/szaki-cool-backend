@@ -65,7 +65,7 @@ public class WorkController {
     }
 
     @GetMapping("search/{category}/{min}/{max}/{minRating}/{maxRating}")
-    public List<SimpleAdDto> getAdsByCatPriceRating(@PathVariable("category") String category, @PathVariable("min") int minValue, @PathVariable("max") int maxValue, @PathVariable("minRating") float minRating, @PathVariable("maxRating") float maxRating){
+    public List<SimpleAdDto> getAdsByCatPriceRating(@PathVariable("category") String category, @PathVariable("min") String minValue, @PathVariable("max") String maxValue, @PathVariable("minRating") String minRating, @PathVariable("maxRating") String maxRating){
         return advertisementService.getAdsByCatPriceRating(category, minValue, maxValue, minRating, maxRating);
     }
 
