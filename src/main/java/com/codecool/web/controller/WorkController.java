@@ -64,6 +64,11 @@ public class WorkController {
         return workService.findAllByUserName(userName);
     }
 
+    @GetMapping("/my/{userId}")
+    public List<SimpleAdDto> getMyAds(@PathVariable("userId") int userId){
+        return advertisementService.getMyWorks(userId);
+    }
+
     @GetMapping("search/{category}/{min}/{max}/{minRating}/{maxRating}")
     public List<SimpleAdDto> getAdsByCatPriceRating(@PathVariable("category") String category, @PathVariable("min") String minValue, @PathVariable("max") String maxValue, @PathVariable("minRating") String minRating, @PathVariable("maxRating") String maxRating){
         return advertisementService.getAdsByCatPriceRating(category, minValue, maxValue, minRating, maxRating);

@@ -51,6 +51,22 @@ public class AdvertisementService {
         return dtos;
     }
 
+    public List<SimpleAdDto> getMyWorks(int userId) {
+        List<SimpleAdDto> simpleAdDtoList = getSimpleDtos();
+        List<SimpleAdDto> simpleAdDtos = new ArrayList<>();
+        List<Work> works = workRepository.findAll();
+        for (SimpleAdDto temp : simpleAdDtoList) {
+            for (Work work : works) {
+                if (work.getId().equals(temp.getId()) && work.getContractor().getId().equals(userId)) {
+                    simpleAdDtos.add(temp);
+                } else {
+                    continue;
+                }
+            }
+        }
+        return simpleAdDtos;
+    }
+
     public List<SimpleAdDto> getAdsByString(String string) {
         List<SimpleAdDto> simpleAdDtos = getSimpleDtos();
         List<SimpleAdDto> simpleAdDtosByString = new ArrayList<>();
