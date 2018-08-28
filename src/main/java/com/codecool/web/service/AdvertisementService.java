@@ -3,6 +3,7 @@ package com.codecool.web.service;
 
 import com.codecool.web.dto.AdvertisementDetailsDto;
 import com.codecool.web.dto.SimpleAdDto;
+import com.codecool.web.model.Favourite;
 import com.codecool.web.model.Work;
 import com.codecool.web.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,16 @@ public class AdvertisementService {
     @Autowired
     UserRepo userRepo;
 
+    FavouriteService favouriteService;
+
     @Autowired
     RatingRepository ratingRepository;
 
     @Autowired
     WorkRepository workRepository;
+
+    @Autowired
+    FavouriteRepository favouriteRepository;
 
     @Autowired
     PictureRepository pictureRepository;
@@ -65,6 +71,37 @@ public class AdvertisementService {
             }
         }
         return simpleAdDtos;
+    }
+
+    public List<SimpleAdDto> convertToSimpleAd(List<Work> works) {
+        List<SimpleAdDto> dtos = new ArrayList<>();
+        for(Work work: works) {
+            SimpleAdDto dto = new SimpleAdDto();
+            dto.setDescription(work.getDescription());
+            dto.setUserName(work.getContractor().getUsername());
+            dto.setPrice(work.getPrice());
+
+            Integer userId = work.getContractor().getId();
+
+            dto.setId(work.getId());
+            dto.setUserRating(ratingRepository.getAvarage(userId));
+            dto.setNumberOfRatings(ratingRepository.getNumberOfRatings(userId));
+            dto.setWorkImgUrl(pictureRepository.findByworkIdAndPromotedTrue(work.getId()).getName());
+            dto.setUserImgUrl(profileService.findByUserId(userId).getPicture());
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    public List<SimpleAdDto> getFavourites(int userId) {
+        List<Work> workList = new ArrayList<>();
+        List<Favourite> favourites = favouriteRepository.findByUserId(userId);
+        for (Favourite favourite : favourites) {
+            Integer workId = favourite.getWorkId();
+            Work work = workRepository.findById(workId).get();
+            workList.add(work);
+        }
+        return convertToSimpleAd(workList);
     }
 
     public List<SimpleAdDto> getAdsByString(String string) {
