@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS works CASCADE;
 DROP TABLE IF EXISTS guarantee_length;
 DROP TABLE IF EXISTS currency;
 drop table if exists users CASCADE;
+drop table if exists favourite CASCADE;
 
 
 create table users (
@@ -113,5 +114,13 @@ create table ratings (
     work_id INTEGER,
     rating integer,
     FOREIGN KEY (work_id) REFERENCES works(id)
+);
+
+create table favourite (
+    user_id Integer,
+    work_id Integer,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (work_id) REFERENCES works(id),
+    PRIMARY KEY (user_id, work_id)
 );
 

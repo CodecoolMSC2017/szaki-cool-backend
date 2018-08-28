@@ -74,6 +74,11 @@ public class WorkController {
         return advertisementService.getAdsByCatPriceRating(str, category, minValue, maxValue, minRating, maxRating);
     }
 
+    @GetMapping("/favourite/{userId}")
+    public List<SimpleAdDto> getFavourite(@PathVariable("userId") int userId){
+        return advertisementService.getFavourites(userId);
+    }
+
     @GetMapping("search/category/{category}")    ///similar method in Searchcontroller, delete this later
     public List<Work> getAdvByCategory(@PathVariable("category") String category){
         return workService.findAllByCategory(category);

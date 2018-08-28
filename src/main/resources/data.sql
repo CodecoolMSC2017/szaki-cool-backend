@@ -89,4 +89,9 @@ INSERT INTO ratings (work_id, rating) VALUES
     (11, 1)
 ;
 
+INSERT INTO favourite (user_id, work_id) VALUES
+    (1, 7),
+    (1, 6)
+;
+
 
