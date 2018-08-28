@@ -177,7 +177,7 @@ public class AdvertisementService {
             } else {
                 for (SimpleAdDto temp : simpleAdDtos) {
                     for (Work work : works) {
-                        if (temp.getId().equals(work.getId()) && work.getCategory().equals(category) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
+                        if (temp.getDescription().equals(str) && temp.getId().equals(work.getId()) && work.getCategory().equals(category) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
                             simpleAdDtosByCatPriceRating.add(temp);
                         }
                     }
