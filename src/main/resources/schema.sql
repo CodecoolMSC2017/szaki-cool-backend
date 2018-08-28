@@ -70,7 +70,7 @@ CREATE TABLE works (
     guarantee_value INT NOT NULL,
     guarantee_length_id INT NOT NULL,
     bid BOOLEAN DEFAULT false,
-    min_bidder_user_rate INT NULL,
+    min_bidder_user_rate INT DEFAULT 0,
     bid_expire_date TEXT NULL,
     FOREIGN KEY (contractor) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (currency_id) REFERENCES currency(id),

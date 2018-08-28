@@ -108,14 +108,14 @@ public class WorkService {
         work.setDescription(workMap.get("workDescription"));
         work.setCategory(workMap.get("category"));
         work.setSharing_date(DateHandler.currentDate());
-        //work.setDue_date(workMap.get("dueDate"));
+        work.setDue_date("2018-08-23 15:13:00");                                       //hard coded
         work.setPrice(Integer.parseInt(workMap.get("price")));
         work.setCurrency(findCurrencyIdByType(workMap.get("currency")));
         work.setGuarantee_value(Integer.parseInt(workMap.get("guarantee_value")));
         work.setGuarantee_length(findGarLenByType(workMap.get("guarantee_length")));
         //work.setStarting_date(workMap.get("startingDate"));
         //work.setBid(Boolean.parseBoolean(workMap.get("bid")));
-        //work.setMin_bidder_user_rate(Integer.parseInt(workMap.get("minBidderUserData")));
+        work.setMin_bidder_user_rate(0);                                // hard coded
         //work.setBid_expire_date(workMap.get("bidExpireDate"));
 
         return work;
