@@ -82,7 +82,7 @@ public class AdvertisementService {
         }
     }
 
-    public List<SimpleAdDto> getAdsByCatPriceRating(String category, String minV, String maxV, String minR, String maxR){
+    public List<SimpleAdDto> getAdsByCatPriceRating(String str, String category, String minV, String maxV, String minR, String maxR){
         List<SimpleAdDto> simpleAdDtos = getSimpleDtos();
         List<SimpleAdDto> simpleAdDtosByCatPriceRating = new ArrayList<>();
         List<Work> works = workRepository.findAll();
@@ -128,23 +128,45 @@ public class AdvertisementService {
         } else {
             maxRating = Float.parseFloat(maxR);
         }
-        if (category.equals("null")) {
-            for (SimpleAdDto temp : simpleAdDtos) {
-                for (Work work : works) {
-                    if (temp.getId().equals(work.getId()) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
-                        simpleAdDtosByCatPriceRating.add(temp);
+        if (str.equals("null")) {
+            if (category.equals("null") || category.equals("*")) {
+                for (SimpleAdDto temp : simpleAdDtos) {
+                    for (Work work : works) {
+                        if (temp.getId().equals(work.getId()) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
+                            simpleAdDtosByCatPriceRating.add(temp);
+                        }
+                    }
+                }
+            } else {
+                for (SimpleAdDto temp : simpleAdDtos) {
+                    for (Work work : works) {
+                        if (temp.getId().equals(work.getId()) && work.getCategory().equals(category) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
+                            simpleAdDtosByCatPriceRating.add(temp);
+                        }
                     }
                 }
             }
         } else {
-            for (SimpleAdDto temp : simpleAdDtos) {
-                for (Work work : works) {
-                    if (temp.getId().equals(work.getId()) && work.getCategory().equals(category) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
-                        simpleAdDtosByCatPriceRating.add(temp);
+            if (category.equals("null") || category.equals("*")) {
+                for (SimpleAdDto temp : simpleAdDtos) {
+                    for (Work work : works) {
+                        if (temp.getDescription().equals(str) && temp.getId().equals(work.getId()) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
+                            simpleAdDtosByCatPriceRating.add(temp);
+                        }
+                    }
+                }
+            } else {
+                for (SimpleAdDto temp : simpleAdDtos) {
+                    for (Work work : works) {
+                        if (temp.getDescription().equals(str) && temp.getId().equals(work.getId()) && work.getCategory().equals(category) && temp.getPrice() >= minValue && temp.getPrice() <= maxValue && temp.getUserRating() >= minRating && temp.getUserRating() <= maxRating) {
+                            simpleAdDtosByCatPriceRating.add(temp);
+                        }
                     }
                 }
             }
         }
+
+
         return simpleAdDtosByCatPriceRating;
     }
 

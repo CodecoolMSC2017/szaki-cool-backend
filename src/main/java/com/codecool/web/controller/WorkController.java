@@ -69,9 +69,9 @@ public class WorkController {
         return advertisementService.getMyWorks(userId);
     }
 
-    @GetMapping("search/{category}/{min}/{max}/{minRating}/{maxRating}")
-    public List<SimpleAdDto> getAdsByCatPriceRating(@PathVariable("category") String category, @PathVariable("min") String minValue, @PathVariable("max") String maxValue, @PathVariable("minRating") String minRating, @PathVariable("maxRating") String maxRating){
-        return advertisementService.getAdsByCatPriceRating(category, minValue, maxValue, minRating, maxRating);
+    @GetMapping("search/{str}/{category}/{min}/{max}/{minRating}/{maxRating}")
+    public List<SimpleAdDto> getAdsByCatPriceRating(@PathVariable("str") String str, @PathVariable("category") String category, @PathVariable("min") String minValue, @PathVariable("max") String maxValue, @PathVariable("minRating") String minRating, @PathVariable("maxRating") String maxRating){
+        return advertisementService.getAdsByCatPriceRating(str, category, minValue, maxValue, minRating, maxRating);
     }
 
     @GetMapping("search/category/{category}")    ///similar method in Searchcontroller, delete this later
