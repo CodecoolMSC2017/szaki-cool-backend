@@ -108,7 +108,7 @@ public class WorkService {
         work.setDescription(workMap.get("workDescription"));
         work.setCategory(workMap.get("category"));
         work.setSharing_date(DateHandler.currentDate());
-        work.setDue_date("2018-08-23 15:13:00");                                       //hard coded
+        work.setDue_date(workMap.get("due_date"));
         work.setPrice(Integer.parseInt(workMap.get("price")));
         work.setCurrency(findCurrencyIdByType(workMap.get("currency")));
         work.setGuarantee_value(Integer.parseInt(workMap.get("guarantee_value")));
