@@ -16,6 +16,17 @@ public class Bid {
     @Column(name = "work_id")
     private Integer work_id;
 
+
+    private Integer bid;
+
+    public Integer getBid() {
+        return bid;
+    }
+
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
+
     public Integer getId() {
         return id;
     }

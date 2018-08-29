@@ -21,6 +21,7 @@ public class PaymentService {
         Bid newBid = new Bid();
         newBid.setUserId(user_id);
         newBid.setWork_id(work_id);
+        newBid.setBid(bid);
         Work work = workRepository.findById(work_id).get();
         work.setPrice(bid);
         workRepository.save(work);
