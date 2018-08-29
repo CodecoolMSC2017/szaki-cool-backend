@@ -229,7 +229,7 @@ public class AdvertisementService {
         ad.setUserId(userId);
         ad.setUserName(work.getContractor().getUsername());
         ad.setCurrency(work.getCurrency().getCurrency());
-        ad.setGarantee_length(work.getGuarantee_length().getGuarantee_length());
+        ad.setGarantee_length(work.getGuarantee_length().getGuaranteeLength());
         ad.setGarantee_value(work.getGuarantee_value());
         ad.setNumberOfRatings(ratingRepository.getNumberOfRatings(userId));
         ad.setUserRating(ratingRepository.getAvarage(userId));

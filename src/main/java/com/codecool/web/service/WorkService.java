@@ -32,7 +32,7 @@ public class WorkService {
     private CurrencyRepository currencyRepository;
 
     @Autowired
-    private GaranteeLenRepository garanteeLenRepository;
+    private GuaranteeLengthRepository garanteeLenRepository;
 
     @Autowired
     private PictureRepository pictureRepository;
@@ -75,7 +75,7 @@ public class WorkService {
         List<GuaranteeLength> target = new ArrayList<>();
         iterable.forEach(target::add);
         for (GuaranteeLength g: target) {
-            if(g.getGuarantee_length().equals(type)){
+            if(g.getGuaranteeLength().equals(type)){
                 return g;
             }
         }
