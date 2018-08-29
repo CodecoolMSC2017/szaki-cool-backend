@@ -183,4 +183,19 @@ public class Work {
         this.bid_expire_date = bid_expire_date;
     }
 
+    public Boolean getWinnerNotified() {
+        return isWinnerNotified;
+    }
+
+    public void setWinnerNotified(Boolean winnerNotified) {
+        isWinnerNotified = winnerNotified;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }

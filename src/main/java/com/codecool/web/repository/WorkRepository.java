@@ -9,5 +9,7 @@ import java.util.List;
 
 public interface WorkRepository extends JpaRepository<Work, Integer> {
 
+    List<Work> findByIsActiveTrueAndBidTrue();
 
+    List<Work> findByIsActiveTrue();
 }
