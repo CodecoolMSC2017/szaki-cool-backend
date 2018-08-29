@@ -13,6 +13,12 @@ public class Work {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "notified")
+    private Boolean isWinnerNotified;
+
+    @Column(name = "active")
+    private Boolean isActive;
+
     @ManyToOne
     @JoinColumn(name = "contractor")
     private User contractor;

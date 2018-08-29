@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS guarantee_length;
 DROP TABLE IF EXISTS currency;
 drop table if exists users CASCADE;
 drop table if exists favourite CASCADE;
+drop table if exists bids CASCADE;
 
 
 create table users (
@@ -67,6 +68,8 @@ CREATE TABLE works (
     due_date TEXT NULL,
     price INT NULL,
     currency_id INT NULL,
+    notified boolean default false,
+    active boolean default true,
     guarantee_value INT NOT NULL,
     guarantee_length_id INT NOT NULL,
     bid BOOLEAN DEFAULT false,
@@ -122,5 +125,14 @@ create table favourite (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (work_id) REFERENCES works(id),
     PRIMARY KEY (user_id, work_id)
+);
+
+create table bids (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    work_id INTEGER NOT NULL,
+    bid INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (work_id) REFERENCES works(id)
 );
 
