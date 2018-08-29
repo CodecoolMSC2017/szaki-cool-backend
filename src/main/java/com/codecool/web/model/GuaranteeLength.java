@@ -11,21 +11,21 @@ public class GuaranteeLength {
     @Column(name = "id")
     private Integer id;
 
-    private String guarantee_length;
+    private String guaranteeLength;
 
     public Integer getId() {
         return id;
     }
 
-    public String getGuarantee_length() {
-        return guarantee_length;
+    public String getGuaranteeLength() {
+        return guaranteeLength;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setGuarantee_length(String guarantee_length) {
-        this.guarantee_length = guarantee_length;
+    public void setGuaranteeLength(String guarantee_length) {
+        this.guaranteeLength = guarantee_length;
     }
 }
