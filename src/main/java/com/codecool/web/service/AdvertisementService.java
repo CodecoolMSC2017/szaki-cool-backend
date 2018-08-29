@@ -240,5 +240,33 @@ public class AdvertisementService {
 
         return ad;
     }
+
+    public boolean isFavourite(int userId, int workId) {
+        List<Favourite> favourites = favouriteRepository.findByUserId(userId);
+        for (Favourite favourite : favourites) {
+            if (favourite.getUserId().equals(userId) && favourite.getWorkId().equals(workId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addFavourite(int userId, int workId) {
+        Favourite favourite = new Favourite();
+        favourite.setUserId(userId);
+        favourite.setWorkId(workId);
+        favouriteRepository.save(favourite);
+        return true;
+    }
+
+    public boolean removeFavourite(int userId, int workId) {
+        List<Favourite> favourites = favouriteRepository.findByUserId(userId);
+        for (Favourite favourite : favourites) {
+            if (favourite.getUserId().equals(userId) && favourite.getWorkId().equals(workId)) {
+                favouriteRepository.delete(favourite);
+            }
+        }
+        return false;
+    }
 }
 

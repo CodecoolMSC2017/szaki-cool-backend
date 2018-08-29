@@ -79,6 +79,21 @@ public class WorkController {
         return advertisementService.getFavourites(userId);
     }
 
+    @GetMapping("/isfavourite/{userId}/{workId}")
+    public boolean getFavourite(@PathVariable("userId") int userId, @PathVariable("workId") int workId){
+        return advertisementService.isFavourite(userId, workId);
+    }
+
+    @GetMapping("/add/favourite/{userId}/{workId}")
+    public boolean addFavourite(@PathVariable("userId") int userId, @PathVariable("workId") int workId){
+        return advertisementService.addFavourite(userId, workId);
+    }
+
+    @GetMapping("/remove/favourite/{userId}/{workId}")
+    public boolean removeFavourite(@PathVariable("userId") int userId, @PathVariable("workId") int workId){
+        return advertisementService.removeFavourite(userId, workId);
+    }
+
     @GetMapping("search/category/{category}")    ///similar method in Searchcontroller, delete this later
     public List<Work> getAdvByCategory(@PathVariable("category") String category){
         return workService.findAllByCategory(category);
