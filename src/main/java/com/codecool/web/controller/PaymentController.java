@@ -16,12 +16,13 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/bid")
-    void bid(@RequestBody Map<String, String> map) {
+    Integer bid(@RequestBody Map<String, String> map) {
         Integer userId = Integer.parseInt(map.get("userId"));
         Integer workId = Integer.parseInt(map.get("workId"));
         Integer bid = Integer.parseInt(map.get("bid"));
 
         paymentService.placeBid(userId, workId, bid);
+        return bid;
     }
 
     @PostMapping("/buy")
