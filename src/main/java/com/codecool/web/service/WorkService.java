@@ -115,8 +115,19 @@ public class WorkService {
         work.setGuarantee_length(findGarLenByType(workMap.get("guarantee_length")));
         //work.setStarting_date(workMap.get("startingDate"));
         //work.setBid(Boolean.parseBoolean(workMap.get("bid")));
-        work.setMin_bidder_user_rate(0);                                // hard coded
-        //work.setBid_expire_date(workMap.get("bidExpireDate"));
+        work.setMin_bidder_user_rate(Integer.parseInt(workMap.get("in_bidder_user_rate")));
+        work.setBid_expire_date(workMap.get("bidExpireDate"));
+        work.setActive(true);
+        work.setWinnerNotified(false);
+        Boolean bid = Boolean.parseBoolean(workMap.get("bid"));
+        if (bid) {
+            work.setBid(true);
+            work.setBid_expire_date(workMap.get("bid_expire_date"));
+        }
+        else {
+            work.setBid(false);
+        }
+
 
         return work;
     }
