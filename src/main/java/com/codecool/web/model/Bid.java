@@ -14,7 +14,7 @@ public class Bid {
     private Integer userId;
 
     @Column(name = "work_id")
-    private Integer work_id;
+    private Integer workId;
 
 
     private Integer bid;
@@ -43,11 +43,11 @@ public class Bid {
         this.userId = userId;
     }
 
-    public Integer getWork_id() {
-        return work_id;
+    public Integer getWorkId() {
+        return workId;
     }
 
-    public void setWork_id(Integer work_id) {
-        this.work_id = work_id;
+    public void setWorkId(Integer workId) {
+        this.workId = workId;
     }
 }
