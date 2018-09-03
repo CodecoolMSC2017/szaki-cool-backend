@@ -12,10 +12,7 @@ import com.codecool.web.service.exceptions.NoCurrencyFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,7 +46,13 @@ public class WorkService {
         try {
             Work work = assembleWork(workMap);
             workRepository.save(work);
-            pictureRepository.save(makeDefaultPicture(work.getId()));
+            if (work.getLinks().get(0).equals("")) {
+                pictureRepository.save(makeDefaultPicture(work.getId()));
+
+            } else {
+                pictureRepository.save(makePicture(work.getId(), work.getLinks().get(0)));
+            }
+
             return work;
         }
         catch (NoSuchElementException ns){
@@ -62,6 +65,15 @@ public class WorkService {
         p.setPromoted(true);
         p.setWorkId(workId);
         p.setName("/workdefault.png");
+
+        return p;
+    }
+
+    private Picture makePicture(Integer workId, String name){
+        Picture p = new Picture();
+        p.setPromoted(true);
+        p.setWorkId(workId);
+        p.setName(name);
 
         return p;
     }
@@ -113,6 +125,9 @@ public class WorkService {
         work.setCurrency(findCurrencyIdByType(workMap.get("currency")));
         work.setGuarantee_value(Integer.parseInt(workMap.get("guarantee_value")));
         work.setGuarantee_length(findGarLenByType(workMap.get("guarantee_length")));
+        String linksArray = workMap.get("links");
+        List<String> links = Arrays.asList(linksArray.split(","));
+        work.setLinks(links);
         //work.setStarting_date(workMap.get("startingDate"));
         //work.setBid(Boolean.parseBoolean(workMap.get("bid")));
         work.setMin_bidder_user_rate(Integer.parseInt(workMap.get("in_bidder_user_rate")));
